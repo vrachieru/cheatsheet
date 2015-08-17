@@ -1,0 +1,104 @@
+#-#
+#-# Chat types
+#-#
+
+To find out what type of chat you're in, simply type /get name into the chat window and press Enter.
+
+Type                        Starts with
+----                        -----------
+cloud-based                 19:...
+p2p-based                   #skypename...
+
+
+#-#
+#-# Cloud-based commands and roles
+#-#
+
+Role                        Description
+----                        -----------
+Admin                       Also known as chat hosts/masters. Admins can promote other people to admins.
+Speaker                     A member who can post messages into the chat and participate in calls.
+
+
+Command                     Description
+-------                     -----------
+/add [skypeName]            Adds a contact to the chat.
+/alertson [text]            Allows you to specify what needs to appear in a chat for you to be notified.
+/alertsoff                  Disable message notifications.
+/find [text]                Finds the first instance of a specific text in a chat.
+/get admins                 Details the people administrating the chat.
+/get options                Details active options for current chat.
+/get role                   Details your role in the chat.
+/showmembers                Displays list of members and their roles.
+/get uri                    Creates a URL link that other people can use to join the group chat.
+/golive                     Starts a group call with other participants of the chat.
+/info                       Details number of people in chat and maximum number available.
+/kick [skypeName]           Eject chat member.
+/leave                      Leave current group chat.
+/me [text]                  Your name will appear followed by any text you write.
+/remotelogout               Sign out all other instances except the current one.
+/setrole [skypeName]        Allows you to set a role to each chat member. MASTER | USER | ADMIN
+/showplaces                 Lists other instances where this Skype name is currently signed in.
+/topic [text]               Changes the chat topic.
+/set options [[+|-]flag]    Sets options for this chat.
+                            - HISTORY_DISCLOSED - Joiners can see the conversation that took place before they joined. The limit that they can see is either 400 messages or two weeks of time, depending on which is reached first.
+                            - JOINING_ENABLED - New users can join the chat.
+
+
+#-#
+#-# P2P-based commands and roles
+#-#
+
+Role                        Description
+----                        -----------
+Creator                     The member who created the chat. There can be only one creator per chat. Only the creator can promote other members to masters.
+Master                      Also known as chat hosts. Masters cannot promote other people to masters.
+Helper                      A semi-privileged member. Helpers will not be affected by the USERS_ARE_LISTENERS option. Helpers cannot promote or demote other members.
+User                        A member who can post messages into the chat.
+Listener                    A member who can see messages but not post into the chat.
+Applicant                   A member waiting for acceptance into the chat. Note: once accepted into the chat, members cannot be demoted to applicants.
+
+
+Command                     Description
+-------                     -----------
+/add [skypeName]            Adds a contact to the chat. For instance: /add alex_cooper1 will add that member to the chat.
+/alertson [text]            Allows you to specify what needs to appear in a chat for you to be notified. For example, /alertson London will only alert you when the word "London" appears in the chat.
+/alertsoff                  Disable message notifications.
+/clearpassword              Removes the password security.
+/find [text]                Finds specific text in a chat. For example, /find Charlie will return the first instance of the word "Charlie" in the chat.
+/get allowlist              Details people with access to the chat.
+/get banlist                Details people banned from the chat.
+/get creator                Details the person who created the chat.
+/get guidelines             See the current chat's guidelines.
+/get options                Details active options for current chat - see /set options below for a list of the options available.
+/get password_hint          Get the password hint.
+/get role                   Details your role in the chat.
+/get uri                    Creates a URL link that other people can use to join the group chat.
+/golive                     Starts a group call with other participants of the chat.
+/info                       Details number of people in chat and maximum number available.
+/kick [skypeName]           Eject chat member.
+/kickban [skypeName]        Ejects chat member and prevents them from rejoining chat. For instance, /kickban alex_cooper1 will eject that member from the chat and ban them from rejoining.
+/leave                      Leave current group chat.
+/me [text]                  Your name will appear followed by any text you write. For instance, /me working from home will cause the phrase "working from home" to appear next to your name in the chat. You can use this to send a message about your activities or status.
+/remotelogout               Sign out all other instances except the current one. This will also stop push notifications on all other instances.
+/set allowlist [[+|-]mask]  Sets the members allowed in the chat. For instance, /set allowlist +alex_cooper1 will allow that member to join the chat.
+/set banlist [[+|-]mask]    Sets which members are banned from the chat. For instance, /set banlist +alex_cooper1 will ban that member from the chat. /set banlist -alex_cooper1 will allow them to rejoin it.
+/set guidelines [text]      Set a chat’s guidelines. For instance, /set guidelines No spoilers! These can be returned to be viewed in the chat by the command /get guidelines.
+/set password [text]        Create a password (no spaces allowed).
+/set password_hint [text]   Create the chat's password hint text.
+/setpassword [pass] [hint]  Create a password and password hint for the chat.
+/setrole [skypeName]        Allows you to set a role to each chat member.
+                            - MASTER
+                            - HELPER
+                            - USER
+                            - LISTENER
+/showplaces                 Lists other instances where this Skype name is currently signed in.
+/topic [text]               Changes the chat topic.
+/whois [skypeName]          Provides details about a chat member such as current role.
+/set options [[+|-]flag]    Sets options for this chat. For example: /set options -JOINING_ENABLED switches off the JOINING_ENABLED option, while /set options +JOINERS_BECOME_APPLICANTS will switch on the JOINERS_BECOME_APPLICANTS option.
+                            - HISTORY_DISCLOSED - Joiners can see the conversation that took place before they joined. The limit that they can see is either 400 messages or two weeks of time, depending on which is reached first.
+                            - JOINERS_BECOME_APPLICANTS - New users can join the chat, but cannot post or receive messages until authorized by a CREATOR or MASTER (see the table below for more information on roles).
+                            - JOINERS_BECOME_LISTENERS - New users can receive messages but cannot post any until promoted to the USER role.
+                            - JOINING_ENABLED - New users can join the chat.
+                            - TOPIC_AND_PIC_LOCKED_FOR_USERS - Only a user with a CREATOR role will be able to change the topic text or accompanying picture for the chat.
+                            - USERS_ARE_LISTENERS - Users with a USER role will be unable to post messages.
