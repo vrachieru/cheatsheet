@@ -26,7 +26,7 @@ println x
 # Creating an empty list
 def technologies = []
 
-# Adding a elements to the list
+# Adding elements to the list
 technologies.add("Grails")
 technologies << "Groovy" // Left shift adds, and returns the list
 technologies.addAll(["Gradle","Griffon"])
@@ -39,16 +39,16 @@ technologies = technologies - 'Grails'
 technologies.each { println "Technology: $it"}
 technologies.eachWithIndex { it, i -> println "$i: $it"}
 
-# Checking List contents
+# Checking list contents
 contained = technologies.contains( 'Groovy' )
 contained = 'Groovy' in technologies
 technologies.containsAll(['Groovy','Grails'])
 
-# Sorting Lists
+# Sorting lists
 technologies.sort() // also mutates original list
 sortedTechnologies = technologies.sort(false) // without mutating the original
 
-# Manipulating Lists
+# Manipulating lists
 Collections.replaceAll(technologies, 'Gradle', 'gradle')
 Collections.shuffle(technologies, new Random())
 technologies.clear()
@@ -100,7 +100,7 @@ if (x < 1) {
   println "X greater than Two"
 }
 
-# Groovy also supports the ternary operator:
+# Groovy also supports the ternary operator
 def y = 10
 def x = (y > 1) ? "worked" : "failed"
 assert x == "worked"
@@ -140,11 +140,11 @@ for (e in map) {
 Operator Overloading for a list of the common operators that Groovy supports:
 http://www.groovy-lang.org/operators.html#Operator-Overloading
 
-# Spread operator: invoke an action on all items of an aggregate object.
+# Spread operator: invoke an action on all items of an aggregate object
 def technologies = ['Groovy','Grails','Gradle']
 technologies*.toUpperCase() // = to technologies.collect { it?.toUpperCase() }
 
-# Safe navigation operator: used to avoid a NullPointerException.
+# Safe navigation operator: used to avoid a NullPointerException
 def user = User.get(1)
 def username = user?.username
 
