@@ -1,0 +1,240 @@
+#-#
+#-# Command line
+#-#
+
+gradle [option...] [task...]
+
+#-# Options
+
+Option                   Description
+------                   -----------
+-?, -h, --help           Shows a help message.
+-a, --no-rebuild         Do not rebuild project dependencies.
+--all                    Shows additional detail in the task listing.
+-b, --build-file         Specifies the build file.
+-c, --settings-file      Specifies the settings file.
+--console                Specifies which type of console output to generate (plain/auto/rich).
+--continue               Continues task execution after a task failure.
+--configure-on-demand    Only relevant projects are configured in this build run.
+-D, --system-prop        Sets a system property of the JVM, for example -Dmyprop=myvalue.
+-d, --debug              Log in debug mode (includes normal stacktrace).
+-g, --gradle-user-home   Specifies the Gradle user home directory (defaults to ~/.gradle).
+--gui                    Launches the Gradle GUI.
+-I, --init-script        Specifies an initialization script.
+-i, --info               Set log level to info.
+-m, --dry-run            Runs the build with all task actions disabled.
+--offline                Specifies that the build should operate without accessing network resources.
+-P, --project-prop       Sets a project property of the root project, for example -Pmyprop=myvalue.
+-p, --project-dir        Specifies the start directory for Gradle (defaults to current directory).
+--parallel               Build projects in parallel.
+--max-workers            Sets the maximum number of workers that Gradle may use.
+--profile                Profiles build execution time and generates a report in the buildDir/reports/profile directory.
+--project-cache-dir      Specifies the project-specific cache directory (defaults to .gradle in the root project dir).
+-q, --quiet              Log errors only.
+--recompile-scripts      Forces scripts to be recompiled, bypassing caching.
+--refresh-dependencies   Refresh the state of dependencies.
+--rerun-tasks            Specifies that any task optimization is ignored.
+-S, --full-stacktrace    Print out the full (very verbose) stacktrace for any exceptions.
+-s, --stacktrace         Print out the stacktrace also for user exceptions (e.g. compile error).
+-t, --continuous         Enables continuous building - Gradle will automatically re-run when changes are detected.
+-u, --no-search-upwards  Don't search in parent directories for a settings.gradle file.
+-v, --version            Prints version info.
+-x, --exclude-task       Specifies a task to be excluded from execution.
+
+
+#-# Tasks
+
+Task                     Description
+----                     -----------
+projects                 List the sub-projects of the selected project, displayed in a hierarchy.
+tasks                    List the main tasks of the selected project.
+
+
+#-# Environment variables
+
+Variable                 Description
+--------                 -----------
+GRADLE_OPTS              Specifies command-line arguments to use to start the JVM.
+GRADLE_USER_HOME         Specifies the Gradle user home directory (defaults to ~/.gradle).
+JAVA_HOME                Specifies the JDK installation directory to use.
+
+
+
+#-#
+#-# Tasks
+#-#
+
+#-# Defining tasks
+
+Every task is composed of two stages: configuration and execution.
+
+By looking at the following three tasks we can see that there are a few slight differences when
+it comes to what is executed when.
+
+// This task will output the defined message when calling it explicitly: 'gradle taskOne'
+// but it will also display the message when we call 'gradle tasks' due to the fact that
+// the printing is defined in the configuration stage and Gradle has to configure all the
+// specified tasks in the build script before the actual build is started.
+task taskOne {
+  def message = "Hello world!" // configuration stage
+  println message // configuration stage
+}
+
+// In order to have a task execute something when called we need to specify a task Action.
+// The easiest way to specify a task action is via the Task#doLast() method.
+task taskTwo {
+  def message = "Hello world!" // configuration stage
+  doLast {
+    println message // execution stage (when the task is called)
+  }
+}
+
+// The '<<' is just a shortcut to doLast.
+// This implementation has the drawback of not having a configuration stage so this is good for
+// really small tasks, but for tasks other than 'Hello world!' you might consider using doLast.
+task taskThree << {
+  def message = "Hello world!" // execution stage (when the task is called)
+  println message // execution stage (when the task is called)
+}
+
+
+#-# Adding behaviour to existing tasks
+
+task hello << { println 'Hello Earth'   }
+hello.doFirst { println 'Hello Venus'   }
+hello.doLast  { println 'Hello Mars'    }
+hello <<      { println 'Hello Jupiter' } // << is an alias for doLast
+
+
+#-# Extra task properties
+
+task myTask { ext.myProperty = 'myValue' }
+task printTaskProperty << { println myTask.myProperty }
+
+
+#-# Locating tasks
+
+# Accessign tasks as properties
+task hello
+println hello.name
+println project.hello.name
+
+# Accessing tasks via the tasks collection
+task hello
+println tasks.hello.name
+println tasks['hello'].name
+
+# Accessing tasks by path
+println tasks.getByPath('hello').path
+println tasks.getByPath(':hello').path
+println tasks.getByPath('projectA:hello').path
+println tasks.getByPath(':projectA:hello').path
+
+
+#-# Configuring tasks
+
+task copy(type: Copy) {
+  description 'Copies resources to the target directory.'
+  from 'resources'
+  into 'target'
+  include('**/*.txt', '**/*.xml', '**/*.properties')
+}
+
+
+#-# Task dependencies
+
+# Adding dependency on a task from another project
+project('projectA') {
+  task taskX(dependsOn: ':projectB:taskY') << {
+    println 'taskX'
+  }
+}
+project('projectB') {
+  task taskY(dependsOn: ':projectA:taskX') << {
+    println 'taskY'
+  }
+}
+
+# Adding dependency using task object
+task taskX << { println 'taskX' }
+task taskY << { println 'taskY' }
+taskX.dependsOn taskY
+
+# Adding dependency using closure
+task taskX << { println 'taskX' }
+taskX.dependsOn {
+  tasks.findAll { task -> task.name.startsWith('lib') }
+}
+task lib1 << { println 'lib1' }
+task lib2 << { println 'lib2' }
+task lib3 << { println 'lib3' }
+
+
+#-# Ordering tasks
+
+The primary difference between a task ordering and a task dependency is that an ordering
+does not influence which tasks will be executed, only the order in which they will be executed.
+
+# Must run after
+task taskX << { println 'taskX' }
+task taskY << { println 'taskY' }
+taskY.mustRunAfter taskX
+
+# Should run after
+task taskX << { println 'taskX' }
+task taskY << { println 'taskY' }
+taskY.shouldRunAfter taskX
+
+
+#-# Replacing tasks
+
+task taskX << { println 'taskX' }
+task taskX(overwrite: true) << { println 'I am the new one.' }
+
+
+#-# Skipping tasks
+
+# Using a predicate
+task hello << { println 'Hello world!' }
+hello.onlyIf { !project.hasProperty('skipHello') }
+
+# Using StopExecutionException
+task hello << { println 'Hello world!' }
+hello.doFirst {
+  if (true) { throw new StopExecutionException() }
+}
+
+
+#-# Disabling tasks
+
+task disableMe << { println 'This should not be printed if the task is disabled' }
+disableMe.enabled = false
+
+
+#-# Task rules
+
+tasks.addRule('Pattern: ping <id>') { String taskname ->
+  if (taskname.startsWith('ping')) {
+    task(taskname) << {
+      println 'Pinging: ' + (taskName - 'ping')
+    }
+  }
+}
+
+
+#-# Finalizer tasks
+
+# Adding a task finalizer
+task taskX << { println 'taskX' }
+task taskY << { println 'taskY' }
+taskX.finalizedBy taskY
+
+# Task finalizer for a failing task
+task taskX << {
+  println 'taskX'
+  throw new RuntimeException()
+}
+task taskY << {
+  println 'taskY'
+}
+taskX.finalizedBy taskY
