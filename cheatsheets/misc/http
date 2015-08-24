@@ -1,0 +1,109 @@
+#-#
+#-# Status codes
+#-#
+
+#-# 1xx / Informational
+
+Code    Title                            Summary
+----    ------                           -----------
+100     Continue                         Client should continue with request.
+101     Switching Protocols              Server is switching protocols.
+103     Checkpoint                       Resume aborted PUT or POST requests.
+122     Request-URI too long             URI is longer than a maximum of 2083 characters.
+
+
+#-# 2xx / Success
+
+Code    Title                            Summary
+----    ------                           -----------
+200     Success                          Standard response for successful HTTP requests.
+201     Created                          Request has been fulfilled; new resource created.
+202     Accepted                         Request accepted, processing pending.
+203     Non-Authoritative Info           Request processed, information may be from another source.
+204     No Content                       Request processed, no content returned.
+205     Reset Content                    Request processed, no content returned, reset document view.
+206     Partial Content                  Partial resource return due to request header.
+208     Already Reported                 Results previously returned.
+
+
+#-# 3xx / Redirection
+
+Code    Title                            Summary
+----    ------                           -----------
+300     Multiple Choices                 Multiple options for the resource delivered.
+301     Moved Permanently                This and all future requests directed to the given URI.
+302     Found                            Temporary response to request found via alternative URI.
+303     See Other                        Permanent response to request found via alternative URI.
+304     Not Modified                     Resource has not been modified since last requested.
+305     Use Proxy                        Content located elsewhere, retrieve from there.
+306     Switch Proxy                     Switchubsequent requests should use the specified proxy.
+307     Temporary Redirect               Connect again to different URI as provided.
+
+
+
+#-# 4xx / Client Error
+
+Code    Title                            Summary
+----    ------                           -----------
+400     Bad Request                      Request cannot be fulfilled due to bad syntax.
+401     Unauthorized                     Authentication is possible but has failed.
+402     Payment Required                 Payment required.
+403     Forbidden                        Server refuses to respond to request.
+404     Not Found                        Requested resource could not be found.
+405     Method Not Allowed               Request method not supported by that resource.
+406     Not Acceptable                   Content not acceptable according to the Accept headers.
+407     Proxy Auth Required              Client must first authenticate itself with the proxy.
+408     Request Timeout                  Server timed out waiting for the request.
+409     Conflict                         Request could not be processed because of conflict.
+410     Gone                             Resource is no longer available and will not be available again.
+411     Length Required                  Request did not specify the length of its content.
+412     Precondition Failed              Server does not meet request preconditions.
+413     Request Entity Too Large         Request is larger than the server is willing or able to process.
+414     Request-URI Too Long             URI provided was too long for the server to process.
+415     Unsupported Media Type           Server does not support media type.
+416     Requested Range Not Satisfiable  Client has asked for unprovidable portion of the file.
+417     Expectation Failed               Server cannot meet requirements of Expect request-header field.
+418     I'm a teapot                     I'm a teapot.
+420     Enhance Your Calm                Twitter rate limiting.
+426     Upgrade Required                 Client should switch to a different protocol.
+444     No Response                      Server returns no information and closes the connection.
+449     Retry With                       Request should be retried after performing action.
+450     Blocked by WPC                   Windows Parental Controls blocking access to webpage.
+499     Client Closed Request            Connection closed by client while HTTP server is processing.
+
+
+#-# 5xx / Server Error
+
+Code    Title                            Summary
+----    ------                           -----------
+500     Internal Server Error            Generic error message
+501     Not Implemented                  Server does not recognise method or lacks ability to fulfill.
+502     Bad Gateway                      Server received an invalid response from upstream server.
+503     Service Unavailable              Server is currently unavailable.
+504     Gateway Timeout                  Gateway did not receive response from upstream server.
+505     HTTP Version Not Supported       Server does not support the HTTP protocol version.
+508     Loop Detected                    Server detected an infinite loop while processing the request.
+509     Bandwidth Limit Exceeded         Bandwidth limit exceeded.
+510     Not Extended                     Further extensions to the request are required.
+598     Network read timeout error       Network read timeout behind the proxy.
+599     Network connect timeout error    Network connect timeout behind the proxy.
+
+
+#-# Extensions
+
+Code    Title                            Summary
+----    ------                           -----------
+102     Processing                       Server has received and is processing the request.
+207     Multi-Status                     XML, can contain multiple separate responses.
+226     IM Used                          Request fulfilled, reponse is instance-manipulations.
+308     Permanent Redirect               Connect again to a different URI using the same method.
+422     Unprocessable Entity             Request unable to be followed due to semantic errors.
+423     Locked                           Resource that is being accessed is locked.
+424     Failed Dependency                Request failed due to failure of a previous request.
+428     Precondition Required            Origin server requires the request to be conditional.
+429     Too Many Requests                User has sent too many requests in a given amount of time.
+431     Request Header Fields Too Large  Server is unwilling to process the request.
+451     Wrong Exchange server            The server cannot reach the client's mailbox.
+506     Variant Also Negotiates          Content negotiation for the request results in a circular reference.
+507     Insufficient Storage             Server is unable to store the representation.
+511     Network Authentication Required  Client needs to authenticate to gain network access.
