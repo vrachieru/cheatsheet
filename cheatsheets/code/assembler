@@ -1,0 +1,108 @@
+#-#
+#-# Operations
+#-#
+
+#-# Transfer
+
+Name      Comment                         Code                 Operation                              O D I T S Z A P C
+----      -------                         ----                 ---------                              -----------------
+MOV       Move (copy)                     MOV dest,source      dest:=source                           . . . . . . . . .
+XCHG      Exchange                        XCHG op1,op2         op1:=op2, op2:=op1                     . . . . . . . . .
+
+STC       Set carry                       STC                  CF:=1                                  . . . . . . . . 1
+CLC       Clear carry                     CLC                  CF:=0                                  . . . . . . . . 0
+CMC       Complement carry                CMC                  CF:=-CF                                . . . . . . . . ±
+
+STD       Set direction                   STD                  DF:=1 (string op's downwards)          . 1 . . . . . . .
+CLD       Clear direction                 CLD                  DF:=0 (string op's upwards)            . 0 . . . . . . .
+
+STI       Set interrupt                   STI                  IF:=1                                  . . 1 . . . . . .
+CLI       Clear interrupt                 CLI                  IF:=0                                  . . 0 . . . . . .
+
+PUSH      Push onto stack                 PUSH source          DEC SP, [SP]:=source                   . . . . . . . . .
+PUSHF     Push flags                      PUSHF                O D I T S Z A P C 286+: also NT, IOPL  . . . . . . . . .
+PUSHA     Push all general flags          POPA                 DI, SI, BP, SP, BX, DX, CX, AX         . . . . . . . . .
+
+POP       Pop from stack                  POP dest             dest:=[SP], INC SP                     . . . . . . . . .
+POPF      Pop flags                       POPF                 O D I T S Z A P C 286+: also NT, IOPL  ± ± ± ± ± ± ± ± ±
+POPA      Pop all general registers       POPA                 DI, SI, BP, SP, BX, DX, CX, AX         . . . . . . . . .
+
+CBW       Convert byte to word            CBW                  AX:=AL (signed)                        . . . . . . . . .
+CWD       Convert word to double          CWD                  DX:AD:=AX (signed)                     ± . . . ± ± ± ± ±
+CWDE      Conv word to extended double    CWDE                 EAX:=AX (signed)                       . . . . . . . . .
+
+IN     i  Input                           IN dest,port         AL/AX/EAX:=byte/word/double of port    . . . . . . . . .
+OUT    i  Output                          OUT port,source      Byte/word/double of port:=AL/AX/EAX    . . . . . . . . .
+
+
+#-# Arithmetic
+
+Name      Comment                         Code                 Operation                              O D I T S Z A P C
+----      -------                         ----                 ---------                              -----------------
+ADD       Add                             ADD dest,source      dest:=dest+source                      ± . . . ± ± ± ± ±
+ADC       Add with carry                  ADC dest,source      dest:=dest+source+CF                   ± . . . ± ± ± ± ±
+
+SUB       Substract                       SUB dest,source      dest:=dest-source                      ± . . . ± ± ± ± ±
+SBB       Substract with borrow           SBB dest,source      dest:=dest-(source+CF)                 ± . . . ± ± ± ± ±
+
+DIV       Divide (unsigned)               DIV op               op=byte: AL:=AX/op           AH:=rest  ? . . . ? ? ? ? ?
+DIV       Divide (unsigned)               DIV op               op=word: AX:=DX:AX/op        DX:=rest  ? . . . ? ? ? ? ?
+DIV  386  Divide (unsigned)               DIV op               op=doublew: EAX:=EDX:EAX/op EDX:=rest  ? . . . ? ? ? ? ?
+
+IDIV      Signed integer divider          IDIV op              op=byte: AL:=AX/op           AH:=rest  ? . . . ? ? ? ? ?
+IDIV      Signed integer divider          IDIV op              op=word: AX:=DX:AX/op        DX:=rest  ? . . . ? ? ? ? ?
+IDIV 386  Signed integer divider          IDIV op              op=doublew: EAX:=EDX:EAX/op EDX:=rest  ? . . . ? ? ? ? ?
+
+MUL       Multiply (unsigned)             MUL op               op=byte: AX:=AL*op          if AH=0 ♦  ± . . . ? ? ? ? ±
+MUL       Multiply (unsigned)             MUL op               op=word: DX:AX:=AX*op       if DX=0 ♦  ± . . . ? ? ? ? ±
+MUL  386  Multiply (unsigned)             MUL op               op=double: EDX:EAX:=EAX/op if EDX=0 ♦  ± . . . ? ? ? ? ±
+
+IMUL   i  Signed integer multiply         IMUL op              op=byte: AX:=AL*op       if AL suff ♦  ± . . . ? ? ? ? ±
+IMUL      Signed integer multiply         IMUL op              op=word: DC:AX:=AX*op    if AX suff ♦  ± . . . ? ? ? ? ±
+IMUL 386  Signed integer multiply         IMUL op              op=double: EDX:EAX:=EAX*op if EAX . ♦  ± . . . ? ? ? ? ±
+
+INC       Increment                       INC op               op:=op+1 (carry not affected)          ± . . . ± ± ± ± .
+DEC       Decrement                       DEC op               op:=op-1 (carry not affected)          ± . . . ± ± ± ± .
+
+CMP       Compare                         CMP op1,op2          op1-op2                                ± . . . ± ± ± ± ±
+
+SAL       Shift arithmetic left           SAL op,quantity                                             i . . . ± ± ? ± ±
+SAR       Shift arithmetic right          SAR op,quantity                                             i . . . ± ± ? ± ±
+RCL       Rotate left through carry       RCL op,quantity                                             i . . . . . . . ±
+RCR       Rotate right through carry      RCR op,quantity                                             i . . . . . . . ±
+ROL       Rotate left                     ROL op,quantity                                             i . . . . . . . ±
+ROR       Rotate right                    ROR op,quantity                                             i . . . . . . . ±
+
+
+#-# Logic
+
+Name      Comment                         Code                 Operation                              O D I T S Z A P C
+----      -------                         ----                 ---------                              -----------------
+NEG       Negate (two-complement)         NEG op               op:=0-op if op=0 then CF:=0 else CF:=1 ± . . . ± ± ± ± ±
+NOT       Invert each bit                 NOT op               op:=¬op (invert each bit)              . . . . . . . . .
+AND       Logical and                     AND dest,source      dest:=dest∧source                      0 . . . ± ± ? ± 0
+OR        Logical or                      OR dest, source      dest:=dest∨source                      0 . . . ± ± ? ± 0
+XOR       Logical exclusive or            XOR dest, source     dest:=dest (xor) source                0 . . . ± ± ? ± 0
+
+SHL       Shift logical left              SHL op, quality                                             i . . . ± ± ? ± ±
+SHR       Shift logical right             SHR op, quality                                             i . . . ± ± ? ± ±
+
+
+#-# Misc
+
+Name      Comment                         Code                 Operation                              O D I T S Z A P C
+----      -------                         ----                 ---------                              -----------------
+NOP       No operation                    NOP                  No operation                           . . . . . . . . .
+LEA       Load effective address          LEA dest, source     dest:=address of source                . . . . . . . . .
+INT       Interrupt                       INT nr               interrupts prog, runs spec int-prog    . . 0 0 . . . . .
+
+
+#-# Legend
+
+Symbol    Description
+------    -----------
+♦         Then CF:=0, OF:=0 else CF:=1, OF:=1
+.         Blank
+i         For more information se instruction specifications
+±         Affected by this instruction
+?         Undefined after this instruction
