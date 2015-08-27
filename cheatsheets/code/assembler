@@ -106,3 +106,65 @@ Symbol    Description
 i         For more information se instruction specifications
 ±         Affected by this instruction
 ?         Undefined after this instruction
+
+
+
+#-#
+#-# Jumps
+#-#
+
+# Basic (flags remain unchanged)
+
+Name      Comment                         Code                 Operation
+----      -------                         ----                 ---------
+CALL      Call subroutine                 CALL proc
+RET       Return from subroutine          RET
+
+JMP       Jump                            JMP dest
+JE        Jump if equal                   JE dest              ≡ JZ
+JZ        Jump if zero                    JZ dest              ≡ JE
+JCXZ      Jump if CX is zero              JCXZ dest
+JECXZ     Jump if ECX is zero             JECXZ dest
+JP        Jump if parity (parity even)    JP dest              ≡ JPE
+JPE       Jump if parity even             JPE dest             ≡ JP
+JPO       Jump if parity odd              JPO dest             ≡ JNP
+
+JNE       Jump if not equal               JNE dest             ≡ JNZ
+JNZ       Jump if not zero                JNZ dest             ≡ JNE
+JNP       Jump if no parity (parity odd)  JNP dest             ≡ JPO
+
+
+# Unsigned (cardinal)
+
+Name      Comment                         Code                 Operation
+----      -------                         ----                 ---------
+JA        Jump if above                   JA dest              ≡ JNBE
+JAE       Jump if above or equal          JAE dest             ≡ JNB ≡ JNC
+JB        Jump if below                   JB dest              ≡ JNAE ≡ JC
+JBE       Jump if below or equal          JBE dest             ≡ JNA
+JC        Jump if carry                   JC dest
+
+JNA       Jump if not above               JNA dest             ≡ JBE
+JNAE      Jump if not above or equal      JNAE dest            ≡ JB ≡ JC
+JNB       Jump if not below               JNB dest             ≡ JAE ≡ JNC
+JNBE      Jump if not below or equal      JNBE dest            ≡ JA
+JNC       Jump if no carry                JNC dest
+
+
+# Signed (integer)
+
+Name      Comment                         Code                 Operation
+----      -------                         ----                 ---------
+JG        Jump if greater                 JG dest              ≡ JNBE
+JGE       Jump if greater or equal        JGE dest             ≡ JNL
+JL        Jump if less                    JL dest              ≡ JNGE
+JLE       Jump if less or equal           JLE dest             ≡ JNG
+JO        Jump if overflow                JO dest
+JS        Jump if sign (= negative)       JS dest
+
+JNG       Jump if not greater             JNG dest             ≡ JLE
+JNGE      Jump if not greater or equal    JNGE dest            ≡ JL
+JNL       Jump if not less                JNL dest             ≡ JGE
+JNLE      Jump if ont less or equal       JNLE dest            ≡ JG
+JNO       Jump if no overflow             JNO dest
+JNS       Jump if no sign (= positive)    JNS dest
