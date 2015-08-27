@@ -209,3 +209,33 @@ JNS       Jump if no sign (= positive)    JNS dest
 │        │          │          │          │ BaseX data ptr
 └────────┴──────────┴──────────┴──────────┘
 31     24 23      16 15       8 7         0
+
+
+
+#-#
+#-# Flags
+#-#
+
+┌───┬───┬───┬───┬───┬───┬───┬───┐  ┌───┬───┬───┬───┬───┬───┬───┬───┐
+│ _ │ _ │ _ │ _ │ O │ D │ I │ T │  │ S │ Z │ _ │ A │ _ │ P │ _ │ C │
+└───┴───┴───┴───┴───┴───┴───┴───┘  └───┴───┴───┴───┴───┴───┴───┴───┘
+
+#-# Control (how instructions are carried out)
+
+Flag      Name                         Comment
+----      -------                      -------
+D         Direction                    1 = String op's process down from high to low address
+I         Interrupt                    Whether interrupts can occur. 1 = enabled
+T         Trap                         Single step for debugging
+
+
+#-# Status (result of operations)
+
+Flag      Name                         Comment
+----      -------                      -------
+C         Carry                        Result of unsigned op. is too large or below zero. 1 = carry/borrow
+O         Overflow                     Result of signed op. is too large or small. 1 = overflow/underflow
+S         Sign                         Sign of result. Reasonable for integer only. 1 = neg / 0 = pos
+Z         Zero                         Result of opertation is zero. 1 = zero
+A         Aux. carry                   Similar to carry but restricted to low nibble only
+P         Parity                       1 = result has even number of set bits
