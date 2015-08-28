@@ -254,8 +254,9 @@ P         Parity                       1 = result has even number of set bits
 
 ; Designed for OS X.
 ; To assemble and run:
-; nasm -f macho project_euler_001.asm && \
-;   ld -o project_euler_001 project_euler_001.o -arch i386 -lc -macosx_version_min 10.6 && ./project_euler_001
+; nasm -f macho project_euler_001.asm \
+;   && ld -o project_euler_001 project_euler_001.o -arch i386 -lc -macosx_version_min 10.6 \
+;   && ./project_euler_001
 
 section .data
     format db "%i", 10, 0   ; printf output format
