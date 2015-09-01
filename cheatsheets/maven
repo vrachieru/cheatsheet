@@ -1,0 +1,55 @@
+#-#
+#-# Commands
+#-#
+
+#-# General command structure
+
+mvn -P<profile> <command> <scope>
+
+
+#-# Simple stuff
+
+mvn help
+mvn compile
+mvn validate
+mvn verify
+mvn test
+mvn clean
+mvn clean package
+mvn clean install
+mvn clean deploy
+
+
+
+#-#
+#-# Artifacts
+#-#
+
+mvn archetype:create                           # Create pom.xml
+
+mvn archetype:create -DgroupId=<group> \       # Create JAR
+                     -DartifactId=<new id>
+
+mvn archetype:create -DgroupId=<group> \       # Create WAR
+                     -DartifactId=<new id> \
+                     -DarchetypeArtifactId=maven-archetype-webapp
+
+mvn install:install-file <params>              # Install dependencies
+
+
+
+#-#
+#-# Releasing
+#-#
+
+mvn deploy:deploy-file <params ...>
+
+# Useful release options:
+#
+#    -P <profile>
+#    -Dusername=<user>
+#    -Dpassword=<password>
+#
+mvn release:prepare
+mvn release:clean
+mvn release:perform
