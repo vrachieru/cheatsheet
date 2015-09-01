@@ -1,0 +1,43 @@
+#-#
+#-# Actions
+#-#
+
+KeyBind  +  Combination Key      Description
+-------     ---------------      -----------
+Ctrl+b      %                    Split the current window vertically into two panes.
+Ctrl+b      :split-window        Horizontally split window or current pane.
+Ctrl+b      o                    Switch to the next pane.
+Ctrl+b      c                    Open new window.
+Ctrl+b      l                    Move to previous window.
+Ctrl+b      n                    Move to next window.
+Ctrl+b      p                    Move to previous window.
+Ctrl+b      d                    Detach current client.
+Ctrl+b      x                    Kill the current pane.
+Ctrl+b      &                    Kill the current window.
+Ctrl+b      ,                    Rename the current window.
+Ctrl+b      q                    Display pane numbers.
+Ctrl+b      ?                    List all keybindings.
+Ctrl+b      {                    Move the current pane to previous.
+Ctrl+b      }                    Move the current pane to next.
+Ctrl+b      :break-pane          Detach pane into its own window.
+Ctrl+b      w                    List all windows.
+Ctrl+b      0-9                  To select window.
+
+
+
+#-#
+#-# Pane Resizing
+#-#
+
+KeyBind  +  Combination Key       Description
+-------     ---------------       -----------
+Ctrl+b      :resize-pane           Resize current pane down by default.
+Ctrl+b      :resize-pane -U        Upward Resize current pane.
+Ctrl+b      :resize-pane -R        Resize current pane to right.
+Ctrl+b      :resize-pane -L        Resize current pane to left.
+Ctrl+b      :resize-pane 40        Resize current pane down by 40 cells.
+Ctrl+b      :resize-pane -L 40     Resize current pane left by 40 cells.
+Ctrl+b      :resize-pane -R 40     Resize current pane right by 40 cells.
+Ctrl+b      :resize-pane -U 40     Resize current pane upward by 40 cells.
+Ctrl+b      :resize-pane -t -L 40  Resize pane with id of 2 left by 40 cells.
+Ctrl+b      :resize-pane -t 2 40   Resize pane with id of 2 down by 40 cells.
