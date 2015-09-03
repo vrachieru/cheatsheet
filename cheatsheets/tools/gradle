@@ -412,6 +412,11 @@ task taskY << {
 taskX.finalizedBy taskY
 
 
+#-# Define default tasks
+
+defaultTasks 'clean', 'run'
+
+
 
 #-#
 #-# Multi-project builds
