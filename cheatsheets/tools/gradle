@@ -61,6 +61,36 @@ JAVA_HOME                Specifies the JDK installation directory to use.
 
 
 #-#
+#-# Plugins
+#-#
+
+#-# Usage
+
+apply plugin: '<plugin-name>'
+
+
+#-# Java Plugin
+
+# Default tasks
+compileJava, compileText, jar, javadoc, clean
+
+#-# Directory structure convention
+project/src/main/java
+project/src/main/resources
+project/src/test/java
+
+#-# Customize directory structure
+sourceSets {
+  main {
+    java {
+      srcDir 'src/java'
+    }
+  }
+}
+
+
+
+#-#
 #-# Repositories
 #-#
 
