@@ -61,6 +61,41 @@ JAVA_HOME                Specifies the JDK installation directory to use.
 
 
 #-#
+#-# Repositories
+#-#
+
+repositories {
+  // Maven central repository
+  mavenCentral()
+
+  // Remote Maven repository
+  maven {
+    url "http://repo.mycompany.com/maven2"
+  }
+
+  // Remote Maven repository with authentication
+  maven {
+    credentials {
+      username "user"
+      password "password"
+    }
+    url "http://repo.mycompany.com/maven2"
+  }
+
+  // Ivy repository
+  ivy {
+    url "http://repo.mycompany.com/repo"
+  }
+
+  // Local repository
+  flatDir {
+    dirs "libs"
+  }
+}
+
+
+
+#-#
 #-# Tasks
 #-#
 
@@ -109,7 +144,7 @@ hello <<      { println 'Hello Jupiter' } // << is an alias for doLast
 #-# Extra task properties
 
 task myTask { ext.myProperty = 'myValue' }
-task printTaskProperty << { println myTask.myProperty }
+task printTaskProperty << { println myTask.myProperty}
 
 
 #-# Locating tasks
