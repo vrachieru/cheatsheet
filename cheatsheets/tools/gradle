@@ -96,6 +96,113 @@ repositories {
 
 
 #-#
+#-# Dependencies
+#-#
+
+#-# Dependency scopes
+
+Scope          Description
+-----          -----------
+compile        Dependencies required to compile the production source of the project.
+runtime        Dependencies required by production classes at runtime. Also includes the compile time dependencies.
+testCompile    Dependencies required to compile the test source of the project. Also includes the compiled production classes and the compile time dependencies.
+testRuntime    Dependencies required to run the tests. Also includes the compile, runtime and test compile dependencies.
+
+
+#-# Module dependencies
+
+# Declaring dependencies with group-name-version strings
+dependencies {
+  compile 'org.apache.solr:solr-core:1.4.1'
+  compile 'org.springframework:spring-core:3.0.5'
+  testCompile 'junit:junit:4.8'
+}
+
+# Declaring dependencies with Groovy map syntax
+dependencies {
+  compile group: 'org.apache.solr', name: 'solr-core' version: '1.4.1'
+  compile group: 'org.springframework', name: 'spring-core', version: '3.0.5'
+  testCompile group: 'junit', name: 'junit', version: '4.8'
+}
+
+
+#-# Dynamic versions
+
+dependencies {
+  compile 'org.springframework:spring-core:3.0.+'
+  testCompile 'junit:junit:4.8+'
+}
+
+
+#-# File dependencies
+
+# Declaring a dependency explicitly on a locally managed module
+dependencies {
+  compile files('lib/hacked-vendor-module.jar')
+}
+
+# Depending recursively on all of the files under lib
+dependencies {
+  compile fileTree('lib')
+}
+
+
+#-# Project dependencies
+
+# Declaring dependencies on subprojects
+dependencies {
+  compile project(':projectA')
+  compile project(':projectB')
+}
+
+# Declaring an explicit configuration dependencies on a subproject
+dependencies {
+  compile project(path: ':projectA', configuration: 'published')
+  compile project(':projectB')
+}
+
+
+#-# Internal dependencies
+
+# Depending on the Gradle API
+dependencies {
+  compile gradleApi()
+  // other dependencies...
+}
+
+# The configuration of a typical Groovy build
+apply plugin: 'groovy'
+// Repository declaration
+dependencies {
+  groovy 'org.codehaus.groovy:groovy:2.0.5'
+  // other dependencies...
+}
+
+# Depending on Gradle’s internal version of Groovy
+apply plugin: 'groovy'
+dependencies {
+  groovy localGroovy()
+  // other dependencies...
+}
+
+
+#-# Example
+
+dependencies {
+  compile 'org.apache.solr:solr-core:1.4.1'
+
+  compile group: 'org.hibernate', name: 'hibernate-core', version: '3.6.7.Final'
+  testCompile group: 'junit', name: 'junit', version: '4.+'
+
+  compile project(':projectA')
+
+  runtime files('libs/a.jar', 'libs/b.jar')
+  runtime fileTree(dir: 'libs', include: '*.jar')
+}
+
+
+
+#-#
 #-# Tasks
 #-#
 
