@@ -69,21 +69,85 @@ JAVA_HOME                Specifies the JDK installation directory to use.
 apply plugin: '<plugin-name>'
 
 
+#-# Base plugins
+
+Plugin             Description
+-----              -----------
+base               Adds the standard lifecycle tasks and configures reasonable defaults for the archive tasks.
+java-base          Adds the source sets concept to the project. Does not add any particular source sets.
+groovy-base        Adds the Groovy source sets concept to the project.
+scala-base         Adds the Scala source sets concept to the project.
+reporting-base     Adds some shared convention properties to the project, relating to report generation.
+
+
+#-# Language plugins
+
+Plugin             Auto applies       Description
+-----              ------------       -----------
+java               java-base          Adds Java compilation, testing and bundling capabilities to a project.
+groovy             java, groovy-base  Adds support for building Groovy projects.
+scala              java, scala-base   Adds support for building Scala projects.
+antlr              java               Adds support for generating parsers using Antlr.
+assembler          -                  Adds native assembly language capabilities to a project.
+c                  -                  Adds C source compilation capabilities to a project.
+cpp                -                  Adds C++ source compilation capabilities to a project.
+objective-c        -                  Adds Objective-C source compilation capabilities to a project.
+objective-cpp      -                  Adds Objective-C++ source compilation capabilities to a project.
+windows-resources  -                  Adds support for including Windows resources in native binaries.
+
+
+#-# Integration plugins
+
+Plugin             Auto applies       Description
+-----              ------------       -----------
+application        java, distribution Adds tasks for running and bundling a Java project as a command-line application.
+ear                -                  Adds support for building J2EE applications.
+jetty              war                Deploys your web application to a Jetty web container embedded in the build.
+maven              -                  Adds support for publishing artifacts to Maven repositories.
+osgi               java-base          Adds support for building OSGi bundles.
+war                java               Adds support for assembling web application WAR files.
+
+
 #-# Java Plugin
 
-# Default tasks
-compileJava, compileText, jar, javadoc, clean
+Task name             Description
+---------             -----------
+compileJava           Compiles production Java source files using javac.
+processResources      Copies production resources into the production classes directory.
+classes               Assembles the production classes directory.
+compileTestJava       Compiles test Java source files using javac.
+processTestResources  Copies test resources into the test classes directory.
+testClasses           Assembles the test classes directory.
+jar                   Assembles the JAR file
+javadoc               Generates API documentation for the production Java source, using Javadoc
+test                  Runs the unit tests using JUnit or TestNG.
+uploadArchives        Uploads artifacts in the archives configuration, including the JAR file.
+clean                 Deletes the project build directory.
+cleanTaskName         Deletes files created by specified task.
+assemble              Assembles all the archives in the project.
+check                 Performs all verification tasks in the project.
+build                 Performs a full build of the project.
+buildNeeded           Performs a full build of the project and all projects it depends on.
+buildDependents       Performs a full build of the project and all projects which depend on it.
+buildConfigName       Assembles the artifacts in the specified configuration.
+uploadConfigName      Assembles and uploads the artifacts in the specified configuration.
 
-#-# Directory structure convention
-project/src/main/java
-project/src/main/resources
-project/src/test/java
+# Directory structure convention
+src/main/java           // Production Java source
+src/main/resources      // Production resources
+src/test/java           // Test Java source
+src/test/resources      // Test resources
+src/sourceSet/java      // Java source for the given source set
+src/sourceSet/resources // Resources for the given source set
 
-#-# Customize directory structure
+# Customize directory structure
 sourceSets {
   main {
     java {
       srcDir 'src/java'
+    }
+    resources {
+      srcDir 'src/resources'
     }
   }
 }
