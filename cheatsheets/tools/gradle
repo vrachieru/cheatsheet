@@ -380,3 +380,32 @@ task taskY << {
   println 'taskY'
 }
 taskX.finalizedBy taskY
+
+
+
+#-#
+#-# Multi-project builds
+#-#
+
+#-# Configuration (settings.gradle)
+
+# Define the list of subprojects
+include 'projectA', 'projectB'
+
+
+#-# Tasks (build.gradle)
+
+# Define tasks to run on all projects
+allprojects {
+  task projectName << { task -> println "I'm $task.project.name" }
+}
+
+# Define tasks to run on all subprojects
+subprojects {
+  task projectName << { println "I am a subproject" }
+}
+
+# Define tasks to run on a specific project
+project(':projectA').projectName << {
+  println "I have a specific project name task"
+}
