@@ -1,0 +1,94 @@
+#-#
+#-# Nick
+#-#
+
+# Register current nickname.
+/msg nickserv register <password> <you@example.com>
+
+# Indent your nickname.
+/msg nickserv identify <password>
+
+# Set current nickname.
+/nick vrachieru
+
+
+
+#-#
+#-# Networks / Servers
+#-#
+
+# Bind nickname with network.
+/network add -nick <nickname> <network>
+
+# Connect to the network.
+/connect <network>
+
+# List networks.
+/network list
+
+# Bind server with network.
+/server add -auto -network <network> <address> <port>
+
+# List servers.
+/server list
+
+
+
+#-#
+#-# Channels
+#-#
+
+# Join to a channel.
+/join #channel
+
+# Leave current channel.
+/part
+
+# List who is at the channel.
+/n
+
+
+
+#-#
+#-# Windows
+#-#
+
+# Open a private message, use /q or /wc also to close private window
+/q, /query nick
+
+# Close window
+/wc
+/window close
+
+# Go to status window
+Alt+1
+
+# Go to num window
+Alt+<num>
+
+# Go to previous window
+Ctrl+P
+
+# Go to next window.
+Ctrl+N
+
+
+
+#-#
+#-# Settings
+#-#
+
+# List all setting = value settings
+/set
+
+# List all timestamp* = value settings
+/set timestamp
+
+# set the appearance of the timestamps, in this case add seconds.
+/set timestamp_format = %H:%M:%S
+
+# Hide email from server
+/msg nickserve SET HIDEMAIL ON
+
+# Save changes to irssi config file (~/.irssi/config).
+/save
