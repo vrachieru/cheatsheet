@@ -1,7 +1,0 @@
-#!/bin/bash
-
-CS=~/.cheatsheet
-
-results=`find $CS -name $1`
-
-[[ ! -z $results ]] && $results -exec subl || echo 'not found'

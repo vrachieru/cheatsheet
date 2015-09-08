@@ -1,0 +1,138 @@
+[
+  {
+    "caption": "Cheatsheet: irssi",
+    "command": "cheatsheet",
+    "args": {
+      "category": "chat",
+      "cheatsheet": "irssi"
+    }
+  },
+  {
+    "caption": "Cheatsheet: skype",
+    "command": "cheatsheet",
+    "args": {
+      "category": "chat",
+      "cheatsheet": "skype"
+    }
+  },
+  {
+    "caption": "Cheatsheet: assembler",
+    "command": "cheatsheet",
+    "args": {
+      "category": "code",
+      "cheatsheet": "assembler"
+    }
+  },
+  {
+    "caption": "Cheatsheet: big-o-complexity",
+    "command": "cheatsheet",
+    "args": {
+      "category": "code",
+      "cheatsheet": "big-o-complexity"
+    }
+  },
+  {
+    "caption": "Cheatsheet: groovy",
+    "command": "cheatsheet",
+    "args": {
+      "category": "code",
+      "cheatsheet": "groovy"
+    }
+  },
+  {
+    "caption": "Cheatsheet: markdown",
+    "command": "cheatsheet",
+    "args": {
+      "category": "code",
+      "cheatsheet": "markdown"
+    }
+  },
+  {
+    "caption": "Cheatsheet: yaml",
+    "command": "cheatsheet",
+    "args": {
+      "category": "code",
+      "cheatsheet": "yaml"
+    }
+  },
+  {
+    "caption": "Cheatsheet: bash",
+    "command": "cheatsheet",
+    "args": {
+      "category": "code",
+      "cheatsheet": "bash"
+    }
+  },
+  {
+    "caption": "Cheatsheet: eclipse",
+    "command": "cheatsheet",
+    "args": {
+      "category": "ide",
+      "cheatsheet": "eclipse"
+    }
+  },
+  {
+    "caption": "Cheatsheet: vim",
+    "command": "cheatsheet",
+    "args": {
+      "category": "ide",
+      "cheatsheet": "vim"
+    }
+  },
+  {
+    "caption": "Cheatsheet: asciiart",
+    "command": "cheatsheet",
+    "args": {
+      "category": "misc",
+      "cheatsheet": "asciiart"
+    }
+  },
+  {
+    "caption": "Cheatsheet: hadoop",
+    "command": "cheatsheet",
+    "args": {
+      "category": "server",
+      "cheatsheet": "hadoop"
+    }
+  },
+  {
+    "caption": "Cheatsheet: http",
+    "command": "cheatsheet",
+    "args": {
+      "category": "server",
+      "cheatsheet": "http"
+    }
+  },
+  {
+    "caption": "Cheatsheet: gradle",
+    "command": "cheatsheet",
+    "args": {
+      "category": "tools",
+      "cheatsheet": "gradle"
+    }
+  },
+  {
+    "caption": "Cheatsheet: jira",
+    "command": "cheatsheet",
+    "args": {
+      "category": "tools",
+      "cheatsheet": "jira"
+    }
+  },
+  {
+    "caption": "Cheatsheet: maven",
+    "command": "cheatsheet",
+    "args": {
+      "category": "tools",
+      "cheatsheet": "maven"
+    }
+  },
+  {
+    "caption": "Cheatsheet: tmux",
+    "command": "cheatsheet",
+    "args": {
+      "category": "tools",
+      "cheatsheet": "tmux"
+    }
+  },
+]
