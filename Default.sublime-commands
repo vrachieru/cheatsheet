@@ -1,138 +1,118 @@
 [
   {
-    "caption": "Cheatsheet: irssi",
-    "command": "cheatsheet",
-    "args": {
-      "category": "chat",
-      "cheatsheet": "irssi"
-    }
+    "caption": "Cheatsheet: ~Refresh database",
+    "command": "cheatsheet_refresh_database"
   },
   {
-    "caption": "Cheatsheet: skype",
-    "command": "cheatsheet",
     "args": {
-      "category": "chat",
-      "cheatsheet": "skype"
-    }
+      "filename": "ide/eclipse"
+    },
+    "caption": "Cheatsheet: Eclipse",
+    "command": "cheatsheet_open"
   },
   {
-    "caption": "Cheatsheet: assembler",
-    "command": "cheatsheet",
     "args": {
-      "category": "code",
-      "cheatsheet": "assembler"
-    }
-  },
-  {
-    "caption": "Cheatsheet: big-o-complexity",
-    "command": "cheatsheet",
-    "args": {
-      "category": "code",
-      "cheatsheet": "big-o-complexity"
-    }
-  },
-  {
-    "caption": "Cheatsheet: groovy",
-    "command": "cheatsheet",
-    "args": {
-      "category": "code",
-      "cheatsheet": "groovy"
-    }
-  },
-  {
-    "caption": "Cheatsheet: markdown",
-    "command": "cheatsheet",
-    "args": {
-      "category": "code",
-      "cheatsheet": "markdown"
-    }
-  },
-  {
-    "caption": "Cheatsheet: yaml",
-    "command": "cheatsheet",
-    "args": {
-      "category": "code",
-      "cheatsheet": "yaml"
-    }
-  },
-  {
-    "caption": "Cheatsheet: bash",
-    "command": "cheatsheet",
-    "args": {
-      "category": "code",
-      "cheatsheet": "bash"
-    }
-  },
-  {
-    "caption": "Cheatsheet: eclipse",
-    "command": "cheatsheet",
-    "args": {
-      "category": "ide",
-      "cheatsheet": "eclipse"
-    }
-  },
-  {
-    "caption": "Cheatsheet: vim",
-    "command": "cheatsheet",
-    "args": {
-      "category": "ide",
-      "cheatsheet": "vim"
-    }
-  },
-  {
-    "caption": "Cheatsheet: asciiart",
-    "command": "cheatsheet",
-    "args": {
-      "category": "misc",
-      "cheatsheet": "asciiart"
-    }
-  },
-  {
-    "caption": "Cheatsheet: hadoop",
-    "command": "cheatsheet",
-    "args": {
-      "category": "server",
-      "cheatsheet": "hadoop"
-    }
-  },
-  {
-    "caption": "Cheatsheet: http",
-    "command": "cheatsheet",
-    "args": {
-      "category": "server",
-      "cheatsheet": "http"
-    }
-  },
-  {
-    "caption": "Cheatsheet: gradle",
-    "command": "cheatsheet",
-    "args": {
-      "category": "tools",
-      "cheatsheet": "gradle"
-    }
-  },
-  {
-    "caption": "Cheatsheet: jira",
-    "command": "cheatsheet",
-    "args": {
-      "category": "tools",
-      "cheatsheet": "jira"
-    }
-  },
-  {
-    "caption": "Cheatsheet: maven",
-    "command": "cheatsheet",
-    "args": {
-      "category": "tools",
-      "cheatsheet": "maven"
-    }
-  },
-  {
+      "filename": "tools/tmux"
+    },
     "caption": "Cheatsheet: tmux",
-    "command": "cheatsheet",
-    "args": {
-      "category": "tools",
-      "cheatsheet": "tmux"
-    }
+    "command": "cheatsheet_open"
   },
+  {
+    "args": {
+      "filename": "code/big-o-complexity"
+    },
+    "caption": "Cheatsheet: Big O complexity",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "server/http"
+    },
+    "caption": "Cheatsheet: HTTP",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/yaml"
+    },
+    "caption": "Cheatsheet: Yaml",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/groovy"
+    },
+    "caption": "Cheatsheet: Groovy",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "chat/irssi"
+    },
+    "caption": "Cheatsheet: Irssi",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "ide/vim"
+    },
+    "caption": "Cheatsheet: vim",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "tools/jira"
+    },
+    "caption": "Cheatsheet: JIRA",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "chat/skype"
+    },
+    "caption": "Cheatsheet: Skype",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/markdown"
+    },
+    "caption": "Cheatsheet: Markdown",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "tools/maven"
+    },
+    "caption": "Cheatsheet: Maven",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/assembler"
+    },
+    "caption": "Cheatsheet: Assembler",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "misc/asciiart"
+    },
+    "caption": "Cheatsheet: Asciiart",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "server/hadoop"
+    },
+    "caption": "Cheatsheet: Hadoop",
+    "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "tools/gradle"
+    },
+    "caption": "Cheatsheet: Gradle",
+    "command": "cheatsheet_open"
+  }
 ]
