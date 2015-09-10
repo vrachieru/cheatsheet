@@ -1,0 +1,21 @@
+#-# Box Model
+
+┌───────────────────────────────────────────┐
+│                                           │
+│   ┌───────────────────────────────────┐   │
+│   │                                   │   │
+│   │   ┌───────────────────────────┐   │   │
+│   │   │                 padding ──┼───┼───┼── Clears an area around the content.
+│   │   │   ┌───────────────────┐   │   │   │   The padding is transparent.
+│   │   │   │                   │   │   │   │
+│   │   │   │      content  ────┼───┼───┼───┼── The content of the box,
+│   │   │   │                   │   │   │   │   where text and images appear. 
+│   │   │   └───────────────────┘   │   │   │
+│   │   │                           │   │   │
+│   │   └───────────────────────────┘   │   │
+│   │                          border ──┼───┼── A border that goes around
+│   └───────────────────────────────────┘   │   the padding and content.
+│   margin                                  │
+└─────┼─────────────────────────────────────┘
+      └─ Clears an area outside the border.
+         The margin is transparent.
