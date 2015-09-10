@@ -1,4 +1,98 @@
 #-#
+#-# Headers
+#-#
+
+#-# Request headers
+
+Field                        Example                                             Description
+-----                        -------                                             -----------
+Accept                       Accept: text/html                                   Acceptable Content-Types for the response.
+Accept-Charset               Accept-Charset: utf-8                               Acceptable character sets.
+Accept-Encoding              Accept-Encoding: gzip, deflate                      Acceptable encodings (for compression).
+Accept-Language              Accept-Language: en-US                              Acceptable human langages.
+Accept-Datetime              Accept-Datetime: Fri, 21 Dec 2012 06:06:06 GMT      Acceptable time of last update.
+Authorization                Authorization: Basic YnJvOmhvbmVzdGx5               HTTP authentication credentials.
+Cache-Control                Cache-Control: no-cache                             Directives which caching mechanisms must obey.
+Connection                   Connection: keep-alive                              Type of preffered connection for the client.
+Cookie                       Cookie: $Version=1; Skin=new;                       An http cookie from the client (see: Set-Cookie).
+Content-Length               Content-Length: 1337                                The length of the body in bytes.
+Content-MD5                  Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==               A base-64 encoded MD5 checksum for the body.
+Content-Type                 Content-Type: application/x-www-form-urlencoded     The MIME type of the request body.
+Date                         Date: Sun, 23 Jun 2013 12:00:00 GMT                 The date and time which the message was sent.
+Expect                       Expect: 100-continue                                Indicates server behaviors the client requires.
+From                         From: john.doe@gmail.com                            The email address of the user making the request.
+Host                         Host: dnslookup.domain.com                          The host url, used for vhosts and proxying.
+If-Match                     If-Match: "737060cd8c284d8af7ad3082f209582d"        Only perform the action if the client-supplied entity matches the one on the server.
+If-Modified-Since            If-Modified-Since: Wed, Dec 25 2012 11:11:11 GMT    If content is unchanged, the server may return 304 Not Modified.
+If-None-Match                If-None-Match: "737060cd8c284d8af7ad3082f209582d"   If content is unchanged (based on ETags), the server may return a 304 Not Modified.
+If-Range                     If-Range: "737060cd8c284d8af7ad3082f209582d"        Send missing parts if the entity is unchanged (used for resuming downloads).
+If-Unmodified-Since          If-Unmodified-Since: Wed, Dec 25 2012 11:11:11 GMT  If content is unchanged, the server must return 304 Not Modified.
+Max-Forwards                 Max-Forwards: 10                                    The maximum number of times a message can be forwarded through proxies/gateways.
+Origin                       Origin: http://domain.com                           Used for initiating CORS requests.
+Pragma                       Pragma: no-cache                                    Directives which may or may not have effects anywhere along the request/response chain.
+Range                        Range: bytes=136-1337                               Request only parts of an entity (used for resuming downloads).
+Referer                      Referer: http://domain.com                          The address of the web page which had the link followed by the client.
+TE                           TE: trailers, deflate                               Transfer encodings the client is willing to accept, including trailers.
+Upgrade                      Upgrade: websocket                                  Request that the server upgrade to another protocol.
+User-Agent                   User-Agent: curl/7.22.0 (x86_64-pc-linux-gnu)       The user agent string of the client.
+Via                          Via: 1.0 fred, 1.1 example.com (Apache/1.1)         Information about proxies through which the request was sent.
+Warning                      Warning: 199 Miscellaneous warning                  A general warning about potential issues with the body.
+X-Requested-With             X-Requested-With: XMLHttpRequest                    Generally used to identify AJAX requests.
+DNT                          DNT: 1                                              Mozilla-proposed "do not track" directive.
+X-Forwarded-For              X-Forwarded-For: 24.237.53.237                      De-facto standard for identifying the originating client IP address though an HTTP proxy load balancer.
+X-Forwarded-Proto            X-Forwarded-Proto: https                            De-facto standard for identifying the originating protocol used by the client.
+Front-End-Https              Front-End-Https: on                                 Non-standard header used by Microsoft applications and load balancers.
+X-ATT-DeviceId               X-ATT-DeviceId: MakeModel/Firmware                  Used by AT&T devices to specify the MakeModel/Firmware (a subset of the User-Agent).
+X-Wap-Profile                X-Wap-Profile: http://wap.mobile.com/schema.xml     Links to an XMLFile describing the connecting device (such as AT&T phones).
+
+
+#-# Response headers
+
+Field                        Example                                             Description
+-----                        -------                                             -----------
+Access-Control-Allow-Origin  Access-Control-Allow-Origin: *                      Specifies which websites are allowed to do CORS.
+Accept-Ranges                Accept-Ranges: bytes                                Partial content range types supported.
+Age                          Age: 42                                             Age of entity in proxy cache (seconds).
+Allow                        Allow: GET, HEAD                                    Valid HTTP methods for the resource (paired with 405 Method not allowed).
+Cache-Control                Cache-Control: max-age=3600                         Specifies behavior to caching proxies from server to client (in seconds).
+Connection                   Connection: close                                   Options desired for the connection.
+Content-Encoding             Content-Encoding: gzip                              The type of encoding used for the response body (used for compression).
+Content-Language             Content-Language: en-US                             The human language in the response body.
+Content-Length               Content-Length: 123                                 Length of the response body in bytes.
+Content-Location             Content-Location: /index.html                       Alternate location for the resource.
+Content-MD5                  Content-MD5: Q2hlY2sgSW50ZWdyaXR5IQ==               A Base64-encoded MD5 checksum for the response body.
+Content-Disposition          Content-Disposition: attachment; filename="f.csv"   Directives used by the client to prompt the user to download a response as a file.
+Content-Type                 Content-Type: text/html; charset=utf-8              The MIME type of the response body.
+Etag                         ETag: "737060cd8c284d8af7ad3082f209582d"            A unique string used to identify a specific version of a resource.
+Expires                      Expires: Fri, 29 Nov 2013 12:34:56 GMT              A date/time after which the resource should be considered outdated by the client.
+Last-Modified                Last-Modified: Sat, 13 Oct 2012 09:35:00 GMT        The date at which the resource was last modified.
+Link                         Link: </feed>; rel="alternate"                      Used to specify relationships with other resources.
+Location                     Location: http://www.google.com                     The location of the resource (used in 3XX redirects).
+P3P                          P3P: CP="This is not a P3P policy See [url]"        Most browsers do not fully implement it, but may contain filler text in order to convince browsers to grant permissions for third party cookies.
+Pragma                       Pragma: no-cache                                    Directives which may or may not have efiects anywhere along the request/response chain.
+Proxy-Authenticate           Proxy-Authenticate: Basic                           Request authentication to access a proxy.
+Retry-After                  Retry-After: 60                                     If the resource is unavailable, the client should try again after some given time (seconds).
+Server                       Server: Apache/2.4.1 (Unix)                         A name for the server.
+Set-Cookie                   UserID=usr; Max-Age=3600; Version=1                 Set an HTTP cookie.
+Status                       Status: 200 OK                                      HTTP status code.
+Strict-Transport-Security    Strict-Transport-Security: max-age=16070400;        Used to specify HTTPS-only policies.
+Trailer                      Trailer: Max-Forwards                               Headers which will be in the trailers of a chunked transfer encoding.
+Transfer-Encoding            Transfer-Encoding: chunked                          The method of encoding used to transfer the response (defined methods: chunked, com-press, deate, gzip, identity).
+Vary                         Vary: *                                             Specifies request headers to match against when deciding caching behavior.
+Via                          Via: 1.0 fred, 1.1 example.com (Apache/1.1)         Information about proxies through which the request was sent.
+Warning                      Warning: 199 Miscellaneous warning                  A general warning about potential issues with the body.
+WWW-Authenticate             WWW-Authenticate: Basic                             Indicates which authentication scheme should be used to access the requested resource.
+Refresh                      Refresh: 5; url=http://domain.com                   A de-facto standard introduced by Netscape and supported in most browsers, used to redirect after some amount of seconds.
+X-Frame-Options              X-Frame-Options: deny                               Used to control in-frame rendering in order to avoid \clickjacking".
+X-XSS-Protection             X-XSS-Protection: 1; mode=block                     Used to control cross-site scripting.
+X-Content-Security-Policy    X-Content-Security-Policy: default-src 'self'       Used to specify Content Securty Policy.
+X-Webkit-CSP                 X-Webkit-CSP: default-src 'self'                    Also used to specify Content Securty Policy.
+X-Powered-By                 X-Powered-By: PHP/5.4.0                             Used to specify which technology is supporting the web application.
+X-UA-Compatible              X-UA-Compatible: IE=EmulateIE7                      Specifies a preferred rendering engine, often used to trigger backwards-compatibility modes.
+
+
+
+#-#
 #-# Status codes
 #-#
 
