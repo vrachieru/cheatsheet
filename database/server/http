@@ -93,6 +93,24 @@ X-UA-Compatible              X-UA-Compatible: IE=EmulateIE7                     
 
 
 #-#
+#-# Methods
+#-#
+
+Method    Description
+------    -----------
+GET       Request a representation of the resource.
+HEAD      Request only the headers for the resource.
+POST      Process the request body with the resource.
+PUT       Create or update a new resource with the contents of the request body.
+DELETE    Remove the specified resource.
+OPTIONS   Return the HTTP methods the specified resource supports.
+TRACE     Echo the received request.
+CONNECT   Convert the connection to a transparent tcp/ip tunnel, usually to allow SSL/TLS through an unencrypted HTTP proxy.
+PATCH     Apply partial modifications to the resource.
+
+
+
+#-#
 #-# Status codes
 #-#
 
