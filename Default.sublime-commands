@@ -114,5 +114,12 @@
     },
     "caption": "Cheatsheet: Gradle",
     "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/css"
+    },
+    "caption": "Cheatsheet: CSS",
+    "command": "cheatsheet_open"
   }
 ]
