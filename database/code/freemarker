@@ -112,6 +112,36 @@ root                               Returns the root node.
 
 
 #-#
+#-# Directives reference
+#-#
+
+Directive                          Description
+---------                          -----------
+assign name=value [in nshash]      Creates a variable called name.
+attemp­t/r­ecover                    try/catch.
+compress                           Removes all but one newline character between lines.
+escape x as x?[escape type]        <pr­e> tag for freemarker code.
+flush                              Forces generated output to be written. 99% of the time is not neccessary.
+ftl                                Tells programs that file is an ftl file.
+functi­on/­return                    Similar to a macro, except returns a specific value as denoted by return.
+global                             Makes a global variable. Variable will be exposed as if at data-model level.
+if/els­eif­/else                     Creates an if/els­eif­/else block.
+import path as hash                Imports the library at location path for use in the current ftl file.
+include path                       Includes the file at location path for use in current document.
+list sequence as item              foreach loop.
+local                              Like assign, but creates local variables within macros or functions.
+macro/­nes­ted­/return                Macro outputs a block of code which wraps nested, return works as a break.
+noparse                            <pr­e> tag for ftl.
+nt                                 No trim. Disables whitespace stripping.
+setting name=value                 Modifies parse settings. View full list in the docs page.
+stop [reason]                      Per ftl docs: an emergency brake. Returns reason if set.
+switch­/ca­se/­def­aul­t/break          A regular switch block.
+t, lt, rt                          Trim, left trim, right trim. Ignores whitespace based on tag position used.
+visit/­rec­urs­e/f­allback             Used for parsing trees, usually XML. See the ftl docs for full info.
+
+
+
+#-#
 #-# References
 #-#
 
