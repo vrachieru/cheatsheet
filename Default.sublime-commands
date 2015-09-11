@@ -135,5 +135,12 @@
     },
     "caption": "Cheatsheet: git",
     "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "os/ubuntu"
+    },
+    "caption": "Cheatsheet: Ubuntu",
+    "command": "cheatsheet_open"
   }
 ]
