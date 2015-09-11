@@ -142,6 +142,102 @@ visit/­rec­urs­e/f­allback             Used for parsing trees, usually XML. 
 
 
 #-#
+#-# Examples
+#-#
+
+#-# Include
+
+<#include "/copyright_footer.html">
+
+
+#-# Assignment
+
+# Any object except null can be passed to a variable.
+<#assign countries = model.countries>
+<#assign myString = "String data">
+
+
+#-# If / elseif / else
+
+# Common operators are supported
+&&, ||, !, ==, !=, >, <, >=, <=
+
+# Simple if condition
+<#if user == "jdoe">
+  Hi John Doe!
+</#if>
+
+# Nested if condition
+<#if x == 1>
+  ...
+<#elseif myVar?has_content>
+  ...
+<#else>
+  ...
+</#if>
+
+
+#-# Iterate array
+
+<#list ["red", "green", "blue"] as color>
+  ${color}
+</#list>
+
+<#list countries as country>
+  ${country_index + 1}. ${country}
+</#list>
+
+
+#-# Iterate over hashmap keys
+
+<#list capitalList?keys as key>
+  ${key} = ${capitalList[key]}
+</#list>
+
+<#assign h = {"name":"mouse", "price":50}>
+<#assign keys = h?keys>
+<#list keys as key>
+  ${key} = ${h[key]};
+</#list>
+
+
+#-# Dealing with missing variables
+
+# A non-existent variable and a variable with null value is the same
+<#if model.object.user??>Welcome ${user}</#if>
+<#if model.object.user?has_content>Welcome ${user}</#if>
+
+# If the value is null/empty, replace with a default value
+${user!"Anonymous"}
+${animals.python.price!0}
+
+
+#-# Methods and functions
+
+# The average of 3 and 5
+${avg(3, 5)}
+
+# The average of the price of a python and an elephant
+${avg(animals.python.price, animals.elephant.price)}
+
+# Arithmetical calculations
+(x * 1.5 + 10) / 2 - y % 100
+
+# Comparison
+x == y, x != y, x < y, x > y, x >= y, x <= y
+
+# Logical operations
+!registered && (firstVisit || fromEurope)
+
+
+#-# Call Java Method
+
+${model.name}
+${model.getName()}
+
+
+
+#-#
 #-# References
 #-#
 
