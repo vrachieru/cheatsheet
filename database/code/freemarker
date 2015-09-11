@@ -110,6 +110,28 @@ parent                             Returns the immediate parent node.
 root                               Returns the root node.
 
 
+#-# Hashes
+
+Directive                          Description
+---------                          -----------
+Keys                               A sequence with all the hash keys.
+Values                             A sequence with all the hash values.
+
+
+#-# Misc
+
+Directive                          Description
+---------                          -----------
+byte,double,float,int,long,short   Converts numbers to other types of numbers.
+eval                               Evaluate a string as an FTL expression.
+has_co­ntent                        Returns true if variable exists and isn't empty, false otherwise.
+interpret                          Returns the value of a string interp­reted as FTL code. Sort of like a function.
+is_...[­type]                       Checks if variable is of type [type]. See docs for full list.
+namespace                          Returns macro or function namespace, if any.
+new                                Creates a variable of type class. Usage is var = "­FQD­N"?n­ew(­opt­ions).
+number­_to­_[d­ate­/ti­me/­dat­etime]     Converts a number to date/t­ime­/da­tetime, using the number of seconds since epoch.
+
+
 
 #-#
 #-# Directives reference
