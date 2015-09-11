@@ -108,3 +108,11 @@ node_n­ame­space                     Returns namespace string of node.
 node_type                          Returns a string with the node type.
 parent                             Returns the immediate parent node.
 root                               Returns the root node.
+
+
+
+#-#
+#-# References
+#-#
+
+[1] http://freemarker.org/docs/ref.html
