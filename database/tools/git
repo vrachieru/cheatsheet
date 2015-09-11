@@ -1,0 +1,128 @@
+#-#
+#-# Configuration
+#-#
+
+# Define the author name to be used for all commits by the current user.
+git config --global user.name <name> 
+
+# Define the author email to be used for all commits by the current user.
+git config --global user.email <email> 
+
+# Create shortcut for a Git command.
+# E.g. alias.glog "log --graph --oneline" will set "git glog" equivalent to "git log --graph --oneline"
+git config --global alias.<alias-name> <git-command> 
+
+# Set text editor used by commands for all users on the machine. 
+# The <editor> arg should be the command that launches the desired editor (ex. vim).
+git config --system core.editor <editor> 
+
+# Open the global configuration file in a text editor for manual editing.
+git config --global --edit
+
+# Enable helpful colorization of command line output
+git config --global color.ui auto
+
+# List all configured properties
+git config --list
+
+
+
+#-#
+#-# Command line
+#-#
+
+#-# Get and create repositories
+
+Command                       Description
+-------                       -----------
+git clone <repository>        Clone repo located at <repository> onto the local machine.
+git init <directory>          Create empty Git repo in specified directory.
+
+
+#-# Basic snapshotting
+
+Command                       Description
+-------                       -----------
+git status                    Show changed files in your working directory.
+git diff                      Show changes to tracked files.
+git diff --cached             Show staged changes.
+git add .                     Stage all changes to the next commit.
+git add <file>                Stage changes in a file to the next commit.
+git commit -am '<message>'    Record all local changes in tracked files in version history.
+git commit -m '<message>'     Record staged changes permanently in version history.
+git commit --amend            Combine the staged changes with the last commit.
+
+
+#-# Reset & Revert
+
+Command                       Description
+-------                       -----------
+git checkout HEAD <file>      Discard local changes in <file>.
+git revert <commit>           Revert a commit.
+git reset --hard HEAD         Discard all local changes in your working directory.
+git reset --hard <commit>     Reset HEAD to <commit> and discard all changes since.
+git reset <commit>            Reset HEAD to <commit> and preserve all changes as unstaged changes.
+git reset --keep <commit>     Reset HEAD to <commit> and preserve uncommitted local changes.
+git rm <file>                 Remove file from staging area and working directory.
+git rm --cached <file>        Remove file from staging area.
+git mv <src> <dest>           Move or rename a file. The changes will be staged.        
+
+
+#-# Remote
+
+Command                       Description
+-------                       -----------
+git remote update             Refresh list of remotes.
+git remote -v                 List all currently configured remotes.
+git remote show <remote>      Display information about remote.
+git remote add <remote> <url> Add a new remote, named <remote>.
+git fetch <remote>            Download all changes from remote, don't integrate into HEAD.
+git pull <remote> <branch>    Download changes and merge to HEAD.
+git push <remote> <branch>    Publish local changes.
+git push <remote> :<branch>   Delete a branch on the remote.
+git push --tags               Publish tags.
+
+
+#-# Braches & Tags
+
+Command                       Description
+-------                       -----------
+git branch                    List local branches.
+git branch -a                 List both local and remote branches.
+git branch -r                 List remote branches.
+git checkout <branch>         Switch to the specified branch and update working directory.
+git branch <new-branch>       Create new branch based on current HEAD.
+git branch -d <branch>        Delete local branch.
+git tag <tag-name>            Mark the current commit with a tag.
+
+
+#-# Merge & Rebase
+
+Command                       Description
+-------                       -----------
+git merge <branch>            Merge <branch> into your current HEAD.
+git rebase <branch>           Rebase your HEAD onto <branch>.
+git rebase --abort            Abort a rebase.
+git rebase --continue         Continue a rebase after resolving conflicts.
+git mergetool                 Use configured merge tool to resolve conflicts.
+
+
+#-# Stash
+
+Command                       Description
+-------                       -----------
+git stash                     Temporarily store all modified tracked files.
+git stash save [msg]          Same as above but naming the stash entry.
+git stash pop                 Restore most recently stashed files.
+git stash list                List all stashed changes.
+git stash drop                Discard most recently stashed changeset.
+
+
+#-# Review history
+
+Command                       Description
+-------                       -----------
+git log                       Show all commits, starting with most recent.
+git log <file>                Show changes over time for a file.
+git log --follow <file>       List version history for a file, including renames.
+git blame <file>              Show changes for a file with time and author.
