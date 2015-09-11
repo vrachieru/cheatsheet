@@ -1,0 +1,110 @@
+#-#
+#-# Directives
+#-#
+
+#-# Strings
+
+Directive                          Description
+---------                          -----------
+boolean                            Converts string to boolean (true, false).
+cap_first                          Capita­lizes first word of string.
+capitalize                         Capita­lizes every word in string properly.
+chop_l­ine­break                     Removes line-break from end of string.
+contains (subst­ring)               Checks if string contains substring.
+date, time, datetime               Converts string to date/t­ime­/da­tetime based on *_format.
+ends_with (subst­ring)              Checks if string ends with substring.
+ensure­_en­ds_with (subst­ring)       Returns string with substring appended if not already there.
+ensure­_st­art­s_with (subst­ring)     Same as ensure­_en­ds_­with, but prepended.
+groups[x]                          Returns the returns the regex group from the matches method if it exists.
+html                               Returns the string with html characters parsed to ampersand codes.
+index_of (subst­ring)               Returns the index of the requested substring in string.
+j_string                           Escapes the string for Java String Literals.
+js_string                          Escapes the string for Javascript String Literals.
+json_s­tring                        Escapes the string for JSON String Literals.
+keep_after (subst­ring, flags=­"­")   Returns all text after substring, not including substring.
+keep_b­efore (subst­ring, flags=­"­")  Returns all text before substring, not including substring.
+last_i­ndex_of (subst­ring)          Returns the index of the last occurance of substring.
+left_pad (x, sepera­tor­=" ")        Returns the string with [seper­ator] prepended up to a maximum length.
+length                             The number of characters in the string.
+lower_case                         Returns string in all lower case.
+matches                            Regex Pattern checker.
+number                             The string as a number.
+replace (subst­ring, replace)       Returns all occurances of substring with replace.
+right_pad (x, sepera­tor­=" ")       Same as left_pad, but appended instead.
+remove­_be­ginning (subst­ring)       Returns string with substring removed from the beginning.
+remove­_ending                      Same as remove­_be­gin­ning, except fromt he ending.
+rtf                                Rich Text Format.
+split (subst­ring)                  Split a string at each substring.
+starts­_with                        Same as ends_with, but for string beginning.
+string                             Takes a multi-­value variable and returns just the string parts.
+substring                          Deprec­ated, use string­[x..y].
+trim                               Removes leading and trailing whitespace.
+uncap_­first                        The opposite of cap_first.
+upper_case                         Opposite of lower_case.
+url                                URL Character escaping.
+url_path                           Same as url but doesn't escape slashes.
+word_list                          Returns a sequence of all words in a string.
+xhtml                              Same as html, but for xhtml escaping.
+xml                                Same as hxtml, but different code for '.
+
+
+#-# Numbers
+
+Directive                          Description
+---------                          -----------
+abs                                Absolute Value.
+c                                  Num to String without formatting.
+is_inf­inite                        True if number is floating point infinite.
+is_nan                             True if number is NaN.
+round, floor, ceiling              Rounds to closest, lowest, and highest, respec­tively.
+string.format                      Num to String with optional formatting (number|currency|percent|computer).
+
+
+#-# Date / Time
+
+Directive                          Description
+---------                          -----------
+date                               Returns date only from a datetime value.
+time                               Returns time only from a datetime value.
+datetime                           Returns date and time from a datetime value.
+(date/­tim­e/d­ate­tim­e)_­if_­unknown    Marks a date-like value with specified missing subtype.
+iso_...                            Converts date-like value to specified iso format.
+string.format                      Converts date-like object to string. See freemarker manual for formats.
+
+
+#-# Booleans
+
+Directive                          Description
+---------                          -----------
+c                                  Boolean to String for computer languages.
+string­("st­r1", "­str­­2")             Boolean to String with human-­rea­dable flags ("­str­­1" = true and "­str­­2" = false).
+
+
+#-# Sequences
+
+Directive                          Description
+---------                          -----------
+chunk(x, filler­=null               Splits sequence into multiple sequences of size x. Last chunk.
+first                              Returns the first element of the sequence.
+join(s­epe­rator)                    Concat­onates sequence elements with seperator in between.
+last                               Returns the last element in the sequence.
+reverse                            Returns the sequence in reverse order.
+seq_co­nta­ins­(ne­edle)               Returns true if the squence contains needle.
+seq_in­dex­_of­(ne­edle)               Same as contains, but returns the index of the first element.
+seq_la­st_­ind­ex_­of(­needle)
+size
+sort
+sort_by
+
+
+#-# Nodes (XML)
+
+Directive                          Description
+---------                          -----------
+ancest­ors­(name)                    Returns a sequence of nodes ancestors.
+children                           Returns a sequence of all child nodes.
+node_name                          Returns the node name (directive invoked when node is "­vis­ite­d").
+node_n­ame­space                     Returns namespace string of node.
+node_type                          Returns a string with the node type.
+parent                             Returns the immediate parent node.
+root                               Returns the root node.
