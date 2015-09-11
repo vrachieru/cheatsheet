@@ -1,6 +1,6 @@
 # About
 
-This is a collection of various brain dumps gathered throughout my journey of playing with a bunch of things.  
+This is a collection of various brain dumps gathered throughout my journey of poking a bunch of things with a stick.  
 Its main purpouse is to be used as a quick reference but it can aswell be a starting point in learning somethign new.
 
 
