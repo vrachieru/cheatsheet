@@ -121,5 +121,12 @@
     },
     "caption": "Cheatsheet: CSS",
     "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/freemarker"
+    },
+    "caption": "Cheatsheet: Freemarker",
+    "command": "cheatsheet_open"
   }
 ]
