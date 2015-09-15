@@ -7,7 +7,7 @@
 Property                      Default                                Description
 --------                      -------                                -----------
 collapserKey                  Name of annotated method               Specifies a collapser key.
-batchMethod                                                          Method name of batch command which must have the following signature: java.util.List method(java.util.List).
+batchMethod                   -                                      Method name of batch command which must have the following signature: java.util.List method(java.util.List).
 scope                         Scope.REQUEST                          Defines what scope the collapsing should occur within.
 collapserProperties           {}                                     Specifies collapser properties.
 
@@ -18,8 +18,8 @@ Property                      Default                                Description
 --------                      -------                                -----------
 groupKey                      Class name of annotated method         Used for grouping together commands such as for reporting, alerting, etc.
 commandKey                    Name of annotated method               Hystrix command key
-threadPoolKey                 ""                                     The thread-pool key is used to represent a HystrixThreadPool for monitoring, metrics publishing, caching and other such uses.
-fallbackMethod                                                       The method to process fallback logic which should be defined in the same class as the HystrixCommand.
+threadPoolKey                 -                                      The thread-pool key is used to represent a HystrixThreadPool for monitoring, metrics publishing, caching and other such uses.
+fallbackMethod                -                                      The method to process fallback logic which should be defined in the same class as the HystrixCommand.
 commandProperties             {}                                     Specifies command properties
 threadPoolProperties          {}                                     Specifies thread pool properties.
 ignoreExceptions              {}                                     Defines exceptions which should be ignored and wrapped to throw in HystrixBadRequestException.
@@ -29,8 +29,30 @@ ignoreExceptions              {}                                     Defines exc
 
 Property                      Default                                Description
 --------                      -------                                -----------
-name                                                                 Property name.
-value                                                                Property value.
+name                          -                                      Property name.
+value                         -                                      Property value.
+
+
+#-# @CacheResult
+
+Property                      Default                                Description
+--------                      -------                                -----------
+cacheKeyMethod                -                                      A method name to be used to get a key for request caching.
+
+
+#-# @CacheRemove
+
+Property                      Default                                Description
+--------                      -------                                -----------
+commandKey                    Name of annotated method               The name of the Hystrix command for which the cache should be cleared.
+cacheKeyMethod                -                                      A method name to be used to get a key for request caching.
+
+
+#-# @CacheKey
+
+Property                      Default                                Description
+--------                      -------                                -----------
+value                         -                                      Allows to specify the name of a certain argument property.
 
 
 
