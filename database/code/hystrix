@@ -132,6 +132,127 @@ metrics.rollingStats.numBuckets                       10             The number 
 
 
 #-#
+#-# Examples
+#-#
+
+#-# Commands
+
+# Synchronous Execution
+@HystrixCommand(groupKey="UserGroup", commandKey = "GetUserByIdCommand")
+public User getUserById(String id) {
+  return userResource.getUserById(id);
+}
+
+# Asynchronous Execution
+@HystrixCommand
+public Future<User> getUserByIdAsync(final String id) {
+  return new AsyncResult<User>() {
+    @Override
+    public User invoke() {
+      return userResource.getUserById(id);
+    }
+  };
+}
+
+# Reactive Execution
+@HystrixCommand
+public Observable<User> getUserById(final String id) {
+  return new ObservableResult<User>() {
+    @Override
+    public User invoke() {
+      return userResource.getUserById(id);
+    }
+  };
+}
+
+# Fallback
+@HystrixCommand(fallbackMethod = "defaultUser")
+public User getUserById(String id) {
+  return userResource.getUserById(id);
+}
+@HystrixCommand(fallbackMethod = "defaultUserSecond")
+private User defaultUser(String id) {
+  return new User();
+}
+@HystrixCommand
+private User defaultUserSecond(String id) {
+  return new User("def", "def");
+}
+
+# Error Propagation
+@HystrixCommand(ignoreExceptions = {BadRequestException.class})
+public User getUserById(String id) {
+  return userResource.getUserById(id);
+}
+
+
+#-# Configuration
+
+# Command Properties
+@HystrixCommand(
+  commandProperties = {
+    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
+  },
+  threadPoolProperties = {
+    @HystrixProperty(name = "coreSize", value = "30"),
+    @HystrixProperty(name = "maxQueueSize", value = "101"),
+    @HystrixProperty(name = "keepAliveTimeMinutes", value = "2"),
+    @HystrixProperty(name = "queueSizeRejectionThreshold", value = "15"),
+    @HystrixProperty(name = "metrics.rollingStats.numBuckets", value = "12"),
+    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "1440")
+  }
+)
+public User getUserById(String id) {
+  return userResource.getUserById(id);
+}
+
+# Hystrix collapser
+@HystrixCollapser(batchMethod = "getUserByIds")
+public Future<User> getUserById(String id) {
+  return null;
+}
+@HystrixCommand
+public List<User> getUserByIds(List<String> ids) {
+  List<User> users = new ArrayList<User>();
+  for (String id : ids) {
+    users.add(new User(id, "name: " + id));
+  }
+  return users;
+}
+Future<User> f1 = userService.getUserById("1");
+Future<User> f2 = userService.getUserById("2");
+Future<User> f3 = userService.getUserById("3");
+Future<User> f4 = userService.getUserById("4");
+Future<User> f5 = userService.getUserById("5");
+
+
+#-# Caching
+
+# Cache key generator
+@CacheResult(cacheKeyMethod = "getUserByNameCacheKey")
+@HystrixCommand
+public User getUserByName(String name) {
+  return storage.getByName(name);
+}
+private Long getUserByNameCacheKey(String name) {
+  return name;
+}
+
+# Get-Set-Get pattern
+@CacheResult
+@HystrixCommand
+public User getUserById(@CacheKey String id) { // GET
+  return storage.get(id);
+}
+@CacheRemove(commandKey = "getUserById")
+@HystrixCommand
+public void update(@CacheKey("id") User user) { // SET
+  storage.put(user.getId(), user);
+}
+
+
+
+#-#
 #-# References
 #-#
 
