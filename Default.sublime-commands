@@ -149,5 +149,12 @@
     },
     "caption": "Cheatsheet: Hystrix",
     "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/bash"
+    },
+    "caption": "Cheatsheet: Bash",
+    "command": "cheatsheet_open"
   }
 ]
