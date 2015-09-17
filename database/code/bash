@@ -1,0 +1,59 @@
+#-#
+#-# Package management
+#-#
+
+#-# Advanced Packaging Tool (apt)
+
+Command                                    Description
+-------                                    -----------
+apt-get install <package-name>             Install specified package(s), along with any dependencies.
+apt-get remove <package-name>              Removes specified package(s), but don't remove dependencies.
+apt-get autoremove                         Remove 'orphaned' dependencies which are installed but are not used by any apps.
+apt-get clean                              Remove downloaded package files (.deb) for software that is already installed.
+apt-get purge [package-name]               Remove and clean a specific package. (also removes configuration files)
+apt-get update                             Read /etc/apt/sources.list and update the system’s database of available packages.
+apt-get upgrade                            Upgrade all packages if there are updates available.
+apt-cache search <package-name>            Find out the name of a package that you know is in the system.
+apt-cache show <package-name>              Show details about a package, including description, dependency info and version numbers.
+apt-cache depends <package name(s)>        List the packages that the specified packages depends upon in a tree.
+apt-cache rdepends <package name(s)>       Generate and output the list of packages that depend upon the specified package.
+apt-cache pkgnames                         Generate a list of the currently installed packages on your system.
+
+
+#-# Debian Package Manager (dpkg)
+
+Command                                    Description
+-------                                    -----------
+dpkg -i <package-file-name.deb>            Install a .deb file.
+dpkg --list [search-pattern]               List packages currently installed on the system.
+dpkg --configure                           Run a configuration interface to set up a package.
+dpkg-reconfigure                           Run a configuration interface on an already installed package.
+
+
+#-# Yellow Dog Updater, Modified (yum)
+
+Command                                    Description
+-------                                    -----------
+yum install <package-name(s)>              Install the specified package(s) along with any required dependencies.
+yum erase <package-name(s)>                Remove the specified package(s) from the system.
+yum search <search-pattern>                Search the list of package names and descriptions for packages that match the search pattern.
+yum deplist <package-name>                 Listing all the libraries and modules that the named package depends on.
+yum check-update                           Refreshe the local cache of the yum database.
+yum info <package-name>                    Display information about the specified package.
+yum reinstall <package-name(s)>            Erase and re-install the specified package on your system.
+yum localinstall <local-rpm-file>          Check the dependencies of an .rpm file and then install it.
+yum update <optional-package-name>         Download and install all updates including bug fixes, security releases, and upgrades.
+yum upgrade                                Upgrade all packages installed in your system to the latest release.
+
+
+#-# RPM package manager (rpm)
+
+Command                                    Description
+-------                                    -----------
+rpm --install --verbose --hash <file.rpm>  Install an rpm from the file. (rpm -ivh [filename].rpm)
+rpm --erase <packag-name>                  Removes the given package. (rpm -e)
+rpm --query --all                          List the names of all packages currently installed. (rpm -qa)
+rpm --query <package-name>                 Confirm or deny if a given package is installed in your system. (rpm -q)
+rpm --query --info <package-name>          Display information about an installed package. (rpm -qi)
+rpm --query --list <package-name>          List files installed by a given package. (rpm -ql)
+rpm --query --file                         Check to see what installed package “owns” a given file.
