@@ -5,154 +5,154 @@
   },
   {
     "args": {
-      "filename": "ide/eclipse"
+      "filename": "ide/eclipse.cheatsheet"
     },
     "caption": "Cheatsheet: Eclipse",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "tools/tmux"
+      "filename": "tools/tmux.cheatsheet"
     },
     "caption": "Cheatsheet: tmux",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/big-o-complexity"
+      "filename": "code/big-o-complexity.cheatsheet"
     },
     "caption": "Cheatsheet: Big O complexity",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "server/http"
+      "filename": "server/http.cheatsheet"
     },
     "caption": "Cheatsheet: HTTP",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/yaml"
+      "filename": "code/yaml.cheatsheet"
     },
     "caption": "Cheatsheet: Yaml",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/groovy"
+      "filename": "code/groovy.cheatsheet"
     },
     "caption": "Cheatsheet: Groovy",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "chat/irssi"
+      "filename": "chat/irssi.cheatsheet"
     },
     "caption": "Cheatsheet: Irssi",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "ide/vim"
+      "filename": "ide/vim.cheatsheet"
     },
     "caption": "Cheatsheet: vim",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "tools/jira"
+      "filename": "tools/jira.cheatsheet"
     },
     "caption": "Cheatsheet: JIRA",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "chat/skype"
+      "filename": "chat/skype.cheatsheet"
     },
     "caption": "Cheatsheet: Skype",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/markdown"
+      "filename": "code/markdown.cheatsheet"
     },
     "caption": "Cheatsheet: Markdown",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "tools/maven"
+      "filename": "tools/maven.cheatsheet"
     },
     "caption": "Cheatsheet: Maven",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/assembler"
+      "filename": "code/assembler.cheatsheet"
     },
     "caption": "Cheatsheet: Assembler",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "misc/asciiart"
+      "filename": "misc/asciiart.cheatsheet"
     },
     "caption": "Cheatsheet: Asciiart",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "server/hadoop"
+      "filename": "server/hadoop.cheatsheet"
     },
     "caption": "Cheatsheet: Hadoop",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "tools/gradle"
+      "filename": "tools/gradle.cheatsheet"
     },
     "caption": "Cheatsheet: Gradle",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/css"
+      "filename": "code/css.cheatsheet"
     },
     "caption": "Cheatsheet: CSS",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/freemarker"
+      "filename": "code/freemarker.cheatsheet"
     },
     "caption": "Cheatsheet: Freemarker",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "tools/git"
+      "filename": "tools/git.cheatsheet"
     },
     "caption": "Cheatsheet: git",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "os/ubuntu"
+      "filename": "os/ubuntu.cheatsheet"
     },
     "caption": "Cheatsheet: Ubuntu",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/hystrix"
+      "filename": "code/hystrix.cheatsheet"
     },
     "caption": "Cheatsheet: Hystrix",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/bash"
+      "filename": "code/bash.cheatsheet"
     },
     "caption": "Cheatsheet: Bash",
     "command": "cheatsheet_open"
