@@ -12,7 +12,7 @@
   },
   {
     "args": {
-      "filename": "tools/tmux.cheatsheet"
+      "filename": "tools/terminal/tmux.cheatsheet"
     },
     "caption": "Cheatsheet: tmux",
     "command": "cheatsheet_open"
@@ -26,21 +26,21 @@
   },
   {
     "args": {
-      "filename": "server/http.cheatsheet"
+      "filename": "server/protocol/http.cheatsheet"
     },
     "caption": "Cheatsheet: HTTP",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/yaml.cheatsheet"
+      "filename": "code/language/yaml.cheatsheet"
     },
     "caption": "Cheatsheet: Yaml",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/groovy.cheatsheet"
+      "filename": "code/language/groovy.cheatsheet"
     },
     "caption": "Cheatsheet: Groovy",
     "command": "cheatsheet_open"
@@ -61,7 +61,7 @@
   },
   {
     "args": {
-      "filename": "tools/jira.cheatsheet"
+      "filename": "tools/issue-tracking/jira.cheatsheet"
     },
     "caption": "Cheatsheet: JIRA",
     "command": "cheatsheet_open"
@@ -75,21 +75,21 @@
   },
   {
     "args": {
-      "filename": "code/markdown.cheatsheet"
+      "filename": "code/language/markdown.cheatsheet"
     },
     "caption": "Cheatsheet: Markdown",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "tools/maven.cheatsheet"
+      "filename": "tools/version-control/maven.cheatsheet"
     },
     "caption": "Cheatsheet: Maven",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/assembler.cheatsheet"
+      "filename": "code/language/assembler.cheatsheet"
     },
     "caption": "Cheatsheet: Assembler",
     "command": "cheatsheet_open"
@@ -110,28 +110,28 @@
   },
   {
     "args": {
-      "filename": "tools/gradle.cheatsheet"
+      "filename": "tools/build-automation/gradle.cheatsheet"
     },
     "caption": "Cheatsheet: Gradle",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/css.cheatsheet"
+      "filename": "code/language/css.cheatsheet"
     },
     "caption": "Cheatsheet: CSS",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/freemarker.cheatsheet"
+      "filename": "code/language/freemarker.cheatsheet"
     },
     "caption": "Cheatsheet: Freemarker",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "tools/git.cheatsheet"
+      "filename": "tools/version-control/git.cheatsheet"
     },
     "caption": "Cheatsheet: git",
     "command": "cheatsheet_open"
@@ -145,21 +145,21 @@
   },
   {
     "args": {
-      "filename": "code/hystrix.cheatsheet"
+      "filename": "code/library/hystrix.cheatsheet"
     },
     "caption": "Cheatsheet: Hystrix",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/bash.cheatsheet"
+      "filename": "code/language/bash.cheatsheet"
     },
     "caption": "Cheatsheet: Bash",
     "command": "cheatsheet_open"
   },
   {
     "args": {
-      "filename": "code/aop.cheatsheet"
+      "filename": "code/paradigm/aop.cheatsheet"
     },
     "caption": "Cheatsheet: Aspect Oriented Programming (AOP)",
     "command": "cheatsheet_open"
