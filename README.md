@@ -2,10 +2,13 @@
 
 This is a collection of various brain dumps gathered throughout my journey of poking a bunch of things with a stick. Its main purpouse is to act as a quick reference for those pesky little details that just won't stay in your head but it can also be a starting point in learning something awesome and new.
 
+![xkcd](https://cloud.githubusercontent.com/assets/5860071/10386656/bd32dbc2-6e62-11e5-8658-2b0f268f0c8a.png)
+
 
 # Sublime Text plugin
 
 ![Sublime Text demo](https://cloud.githubusercontent.com/assets/5860071/9787794/3904d4b8-57ce-11e5-96da-b0c34b2ce8a1.gif)
+
 
 ### Installation
 
