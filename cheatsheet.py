@@ -23,7 +23,7 @@ class CheatsheetRefreshDatabaseCommand(sublime_plugin.WindowCommand):
   def getCheatsheets(self):
     self.cheatsheets = {
       self.getRelativePath(root, filename) : filename
-      for root, dirnames, filenames in os.walk(database_dir) for filename in filenames }
+      for root, dirnames, filenames in os.walk(database_dir) for filename in filenames if filename.endswith(".cheatsheet") }
 
   def getRelativePath(self, root, filename):
     return os.path.relpath(os.path.join(root, filename), database_dir)
