@@ -508,3 +508,17 @@ subprojects {
 project(':projectA').projectName << {
   println "I have a specific project name task"
 }
+
+
+#-#
+#-# Gotchas
+#-#
+
+#-# Publishing the fat jar for a Spring Boot application, not classes only jar
+
+Spring Boot's bootRepackage task is setup as a dependency of the assemble task.
+In order to end up with the fat jar on nexus or whatever, the publish task has to depend on assemble.
+
+publish {
+  dependsOn assemble
+}
