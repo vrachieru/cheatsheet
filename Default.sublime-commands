@@ -163,5 +163,12 @@
     },
     "caption": "Cheatsheet: Aspect Oriented Programming (AOP)",
     "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/language/cmd.cheatsheet"
+    },
+    "caption": "Cheatsheet: Windows Command Line (CMD)",
+    "command": "cheatsheet_open"
   }
 ]

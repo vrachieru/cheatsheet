@@ -1,0 +1,5 @@
+#-#
+#-# Filesystem
+#-#
+
+mklink /j source destination
