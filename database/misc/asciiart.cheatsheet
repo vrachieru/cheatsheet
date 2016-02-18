@@ -27,17 +27,16 @@ sudo chmod a+rx file
 
 # Directory tree
 
-|-- CVS
-|   |-- Entries
-|   |-- Repository
-|   `-- Root
-|-- Makefile
-|-- foo
-|   `-- bar
-|-- tree.1
-`-- tree.c
-
-
+root
+├── CVS
+│   ├── Entries
+│   ├── Repository
+│   └── Root
+├── Makefile
+├── foo
+│   └── bar
+├── tree.1
+└── tree.c
 
 
 #-#
