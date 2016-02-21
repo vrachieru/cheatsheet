@@ -1,8 +1,0 @@
-{
-  "dependencies": [],
-  "url": "https://github.com/vrachieru/cheatsheet",
-  "platforms": ["*"],
-  "version": "1.0",
-  "sublime_text": "*",
-  "description": "Various brain dumps gathered throughout my journey of poking a bunch of things with a stick."
-}
