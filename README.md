@@ -5,21 +5,30 @@ This is a collection of various brain dumps gathered throughout my journey of po
 ![xkcd](https://cloud.githubusercontent.com/assets/5860071/10386656/bd32dbc2-6e62-11e5-8658-2b0f268f0c8a.png)
 
 
-# Sublime Text plugin
+# Preview
 
 ![Sublime Text demo](https://cloud.githubusercontent.com/assets/5860071/9787794/3904d4b8-57ce-11e5-96da-b0c34b2ce8a1.gif)
 
 
 ### Installation
 
-1. Go to the packages directory (Preferences -> Browse packages)
-2. Copy paste this repository into the packages directory
+##### Package control
+
+1. Make sure you have [Package Control](https://packagecontrol.io/installation) installed
+2. Press `Ctrl+Shift+P` to open the command palette
+3. Type `install` and search for the `Package Control: Install Package`
+4. Search for the package named `Cheatsheet` and install it
+
+##### Manual
+
+1. Go to the packages directory (`Preferences -> Browse packages`)
+2. Clone this repository into the packages directory
 
 
 ### Usage
 
-Open the command palette using Ctrl+Shift+P.  
-Type 'Cheatsheet' followed by the command or part of the cheatsheet name.
+Open the command palette using `Ctrl+Shift+P`.  
+Type `Cheatsheet` followed by the command or part of the cheatsheet name.
 
 
 ### Commands
