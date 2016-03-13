@@ -1,4 +1,6 @@
-# About
+# Cheatsheet
+
+[![Package Control Downloads](https://img.shields.io/packagecontrol/dt/Cheatsheet.svg?style=flat)](https://packagecontrol.io/packages/Cheatsheet)
 
 This is a collection of various brain dumps gathered throughout my journey of poking a bunch of things with a stick. Its main purpouse is to act as a quick reference for those pesky little details that just won't stay in your head but it can also be a starting point in learning something awesome and new.
 
