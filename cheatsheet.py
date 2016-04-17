@@ -3,14 +3,26 @@ import sublime, sublime_plugin
 import json
 
 plugin_home = os.path.dirname(os.path.realpath(__file__));
+
 database_dir = os.path.join(plugin_home, "database")
 commands_file = os.path.join(plugin_home, "Default.sublime-commands")
+
+local_database_dir = os.path.join(os.path.expanduser('~'), ".cheatsheet")
+local_commands_file = os.path.join(local_database_dir, "Local.sublime-commands")
+local_commands_file_symlink = os.path.join(plugin_home, "Local.sublime-commands")
+
+def plugin_loaded():
+  os.symlink(local_commands_file, local_commands_file_symlink)
 
 class CheatsheetOpenCommand(sublime_plugin.WindowCommand):
   def run(self, **args):
     cheatsheet = os.path.join(database_dir, args["filename"])
     self.dest_view = self.window.open_file(cheatsheet)
 
+class CheatsheetOpenLocalCommand(sublime_plugin.WindowCommand):
+  def run(self, **args):
+    cheatsheet = os.path.join(local_database_dir, args["filename"])
+    self.dest_view = self.window.open_file(cheatsheet)
 
 class CheatsheetRefreshDatabaseCommand(sublime_plugin.WindowCommand):
   def run(self, **args):
