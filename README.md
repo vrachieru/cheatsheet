@@ -33,12 +33,18 @@ Open the command palette using `Ctrl+Shift+P`.
 Type `Cheatsheet` followed by the command or part of the cheatsheet name.
 
 
+### Local cheatsheets
+
+Place your own cheatsheets under `~/.cheatsheet` and restart SublimeText or run the `Refresh local database` command.
+Make sure your files have the `.cheatsheet` extension.
+
+
 ### Commands
 
 | Command | Description
 | --- | ---
 | `cheatsheet-name` | Open the specified cheatsheet.
-| Refresh database | Remove invalid cheatsheets and add new ones to the command palette by scanning the database folder
+| Refresh local database | Remove invalid cheatsheets and add new ones to the command palette by scanning the local database folder
 
 
 # Copyright
