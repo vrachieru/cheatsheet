@@ -1,7 +1,7 @@
 [
   {
-    "caption": "Cheatsheet: ~Refresh database",
-    "command": "cheatsheet_refresh_database"
+    "caption": "Cheatsheet: ~Refresh local database",
+    "command": "cheatsheet_refresh_local_database"
   },
   {
     "args": {

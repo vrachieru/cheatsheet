@@ -24,25 +24,29 @@ class CheatsheetOpenLocalCommand(sublime_plugin.WindowCommand):
     cheatsheet = os.path.join(local_database_dir, args["filename"])
     self.dest_view = self.window.open_file(cheatsheet)
 
-class CheatsheetRefreshDatabaseCommand(sublime_plugin.WindowCommand):
+class CheatsheetRefreshLocalDatabaseCommand(sublime_plugin.WindowCommand):
   def run(self, **args):
-    self.getCheatsheets()
-    self.getCommands()
-    self.removeInvalidCheatsheetCommands()
-    self.addNewCheatsheetOpenCommands()
-    self.setCommands()
+    if os.path.isdir(local_database_dir):
+      self.getCheatsheets()
+      self.getCommands()
+      self.removeInvalidCheatsheetCommands()
+      self.addNewCheatsheetOpenCommands()
+      self.setCommands()
 
   def getCheatsheets(self):
     self.cheatsheets = {
       self.getRelativePath(root, filename) : filename
-      for root, dirnames, filenames in os.walk(database_dir) for filename in filenames if filename.endswith(".cheatsheet") }
+      for root, dirnames, filenames in os.walk(local_database_dir) for filename in filenames if filename.endswith(".cheatsheet") }
 
   def getRelativePath(self, root, filename):
-    return os.path.relpath(os.path.join(root, filename), database_dir)
+    return os.path.relpath(os.path.join(root, filename), local_database_dir)
 
   def getCommands(self):
-    with open(commands_file, 'r') as input:
-      self.commands = json.load(input)
+    if os.path.isfile(local_commands_file):
+      with open(local_commands_file, 'r') as input:
+        self.commands = json.load(input)
+    else:
+      self.commands = []
 
   def removeInvalidCheatsheetCommands(self):
     self.commands = [
@@ -56,7 +60,7 @@ class CheatsheetRefreshDatabaseCommand(sublime_plugin.WindowCommand):
     return self.isCheatsheetOpenCommand(command) and self.cheatsheetExists(command['args']['filename'])
 
   def isCheatsheetOpenCommand(self, command):
-    return command['command'] == 'cheatsheet_open'
+    return command['command'] == 'cheatsheet_open_local'
 
   def cheatsheetExists(self, cheatsheet):
     return cheatsheet in self.cheatsheets.keys()
@@ -78,9 +82,9 @@ class CheatsheetRefreshDatabaseCommand(sublime_plugin.WindowCommand):
   def newCheatsheetOpenCommand(self, cheatsheet, path):
     return {
       "caption": "Cheatsheet: " + cheatsheet,
-      "command": "cheatsheet_open",
+      "command": "cheatsheet_open_local",
       "args": { "filename": path } }
 
   def setCommands(self):
-    with open(commands_file, 'w') as output:
+    with open(local_commands_file, 'w') as output:
       json.dump(self.commands, output, sort_keys=True, indent=2, separators=(',', ': '))
