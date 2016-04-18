@@ -107,5 +107,6 @@ class CheatsheetRefreshLocalDatabaseCommand(sublime_plugin.WindowCommand):
       json.dump(self.commands, output, sort_keys = True, indent = 2, separators = (',', ': '))
 
   def symlinkCommandsFile(self):
-    if not os.path.islink(_localCommandsFileSymlink):
-      os.symlink(_localCommandsFile, _localCommandsFileSymlink)
+    if os.path.exists(_localCommandsFileSymlink):
+      os.remove(_localCommandsFileSymlink)
+    os.symlink(_localCommandsFile, _localCommandsFileSymlink)
