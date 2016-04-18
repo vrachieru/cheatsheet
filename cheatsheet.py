@@ -15,6 +15,10 @@ _localCommandsFile        = os.path.join(_localDatabase, 'Local' + _commandExten
 _localCommandsFileSymlink = os.path.join(_pluginHome, 'Local' + _commandExtension)
 
 
+def plugin_loaded():
+  vindow = sublime.active_window()
+  sublime.set_timeout(lambda: vindow.run_command('cheatsheet_refresh_local_database'), 2000)
+
 class CheatsheetOpenCommand(sublime_plugin.WindowCommand):
   def run(self, **args):
     cheatsheet = os.path.join(_defaultDatabase, args['filename'])
