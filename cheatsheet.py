@@ -2,56 +2,65 @@ import os
 import sublime, sublime_plugin
 import json
 
-plugin_home = os.path.dirname(os.path.realpath(__file__));
+_cheatsheetExtension      = '.cheatsheet'
+_commandExtension         = '.sublime-commands'
 
-database_dir = os.path.join(plugin_home, "database")
-commands_file = os.path.join(plugin_home, "Default.sublime-commands")
+_pluginHome               = os.path.dirname(os.path.realpath(__file__));
 
-local_database_dir = os.path.join(os.path.expanduser('~'), ".cheatsheet")
-local_commands_file = os.path.join(local_database_dir, "Local.sublime-commands")
-local_commands_file_symlink = os.path.join(plugin_home, "Local.sublime-commands")
+_defaultDatabase          = os.path.join(_pluginHome, 'database')
+_defaultCommandsFile      = os.path.join(_pluginHome, 'Default' + _commandExtension)
 
-def plugin_loaded():
-  os.symlink(local_commands_file, local_commands_file_symlink)
+_localDatabase            = os.path.join(os.path.expanduser('~'), '.cheatsheet')
+_localCommandsFile        = os.path.join(_localDatabase, 'Local' + _commandExtension)
+_localCommandsFileSymlink = os.path.join(_pluginHome, 'Local' + _commandExtension)
+
 
 class CheatsheetOpenCommand(sublime_plugin.WindowCommand):
   def run(self, **args):
-    cheatsheet = os.path.join(database_dir, args["filename"])
+    cheatsheet = os.path.join(_defaultDatabase, args['filename'])
     self.dest_view = self.window.open_file(cheatsheet)
 
 class CheatsheetOpenLocalCommand(sublime_plugin.WindowCommand):
   def run(self, **args):
-    cheatsheet = os.path.join(local_database_dir, args["filename"])
+    cheatsheet = os.path.join(_localDatabase, args['filename'])
     self.dest_view = self.window.open_file(cheatsheet)
 
 class CheatsheetRefreshLocalDatabaseCommand(sublime_plugin.WindowCommand):
   def run(self, **args):
-    if os.path.isdir(local_database_dir):
-      self.getCheatsheets()
-      self.getCommands()
-      self.removeInvalidCheatsheetCommands()
-      self.addNewCheatsheetOpenCommands()
-      self.setCommands()
+    if os.path.isdir(_localDatabase):
+      self.loadCheatsheetCommands()
+      self.getCheatsheetFiles()
+      self.filterOutInvalidCheatsheets()
+      self.registerNewCheatsheets()
+      self.saveCheatsheetCommands()
+      self.symlinkCommandsFile()
 
-  def getCheatsheets(self):
-    self.cheatsheets = {
-      self.getRelativePath(root, filename) : filename
-      for root, dirnames, filenames in os.walk(local_database_dir) for filename in filenames if filename.endswith(".cheatsheet") }
-
-  def getRelativePath(self, root, filename):
-    return os.path.relpath(os.path.join(root, filename), local_database_dir)
-
-  def getCommands(self):
-    if os.path.isfile(local_commands_file):
-      with open(local_commands_file, 'r') as input:
+  def loadCheatsheetCommands(self):
+    if os.path.isfile(_localCommandsFile):
+      with open(_localCommandsFile, 'r') as input:
         self.commands = json.load(input)
     else:
       self.commands = []
 
-  def removeInvalidCheatsheetCommands(self):
+  def getCheatsheetFiles(self):
+    self.cheatsheets = {
+      self.getRelativePath(root, filename) : self.getFilenameWithoutExtension(filename)
+      for root, dirnames, filenames in os.walk(_localDatabase)
+        for filename in filenames
+          if filename.endswith(_cheatsheetExtension)
+    }
+
+  def getRelativePath(self, root, filename):
+    return os.path.relpath(os.path.join(root, filename), _localDatabase)
+
+  def getFilenameWithoutExtension(self, filename):
+    return filename.replace(_cheatsheetExtension, '')
+
+  def filterOutInvalidCheatsheets(self):
     self.commands = [
       command for command in self.commands
-      if self.isValidCheatsheetCommand(command) ]
+        if self.isValidCheatsheetCommand(command)
+    ]
 
   def isValidCheatsheetCommand(self, command):
     return not self.isCheatsheetOpenCommand(command) or self.isValidCheatsheetOpenCommand(command)
@@ -66,8 +75,11 @@ class CheatsheetRefreshLocalDatabaseCommand(sublime_plugin.WindowCommand):
     return cheatsheet in self.cheatsheets.keys()
 
   def getNewCheatsheets(self):
-    return { path : cheatsheet
-      for path, cheatsheet in self.cheatsheets.items() if self.isNewCheatsheet(path) }
+    return {
+      path : cheatsheet
+        for path, cheatsheet in self.cheatsheets.items()
+          if self.isNewCheatsheet(path)
+    }
 
   def isNewCheatsheet(self, path):
     for command in self.commands:
@@ -75,16 +87,21 @@ class CheatsheetRefreshLocalDatabaseCommand(sublime_plugin.WindowCommand):
         return False
     return True
 
-  def addNewCheatsheetOpenCommands(self):
+  def registerNewCheatsheets(self):
     for path, cheatsheet in self.getNewCheatsheets().items():
       self.commands.append(self.newCheatsheetOpenCommand(cheatsheet, path))
 
   def newCheatsheetOpenCommand(self, cheatsheet, path):
     return {
-      "caption": "Cheatsheet: " + cheatsheet,
-      "command": "cheatsheet_open_local",
-      "args": { "filename": path } }
+      'caption': 'Cheatsheet: ' + cheatsheet,
+      'command': 'cheatsheet_open_local',
+      'args': { 'filename': path }
+    }
 
-  def setCommands(self):
-    with open(local_commands_file, 'w') as output:
-      json.dump(self.commands, output, sort_keys=True, indent=2, separators=(',', ': '))
+  def saveCheatsheetCommands(self):
+    with open(_localCommandsFile, 'w') as output:
+      json.dump(self.commands, output, sort_keys = True, indent = 2, separators = (',', ': '))
+
+  def symlinkCommandsFile(self):
+    if not os.path.islink(_localCommandsFileSymlink):
+      os.symlink(_localCommandsFile, _localCommandsFileSymlink)
