@@ -170,5 +170,12 @@
     },
     "caption": "Cheatsheet: Windows Command Line (CMD)",
     "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "code/framework/test/spock.cheatsheet"
+    },
+    "caption": "Cheatsheet: Spock",
+    "command": "cheatsheet_open"
   }
 ]
