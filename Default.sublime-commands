@@ -177,5 +177,12 @@
     },
     "caption": "Cheatsheet: Spock",
     "command": "cheatsheet_open"
+  },
+  {
+    "args": {
+      "filename": "virtualization/docker.cheatsheet"
+    },
+    "caption": "Cheatsheet: Docker",
+    "command": "cheatsheet_open"
   }
 ]

@@ -1,0 +1,286 @@
+                      ##         .
+                ## ## ##        ==
+             ## ## ## ## ##    ===
+         /"""""""""""""""""\___/ ===
+    ~~~ {~~ ~~~~ ~~~ ~~~~ ~~~ ~ /  ===- ~~~
+         \______ o           __/
+           \    \         __/
+            \____\_______/
+
+
+#-#
+#-# Why Docker?
+#-#
+
+#-# Virtual machine vs Docker container
+
+# Virtual machine
+- Must use a Hypervisor emulated Virtual Hardware
+- Needs a guest OS
+- Takes a lot of system resources
+
+  ┌─ ┌─────────┐ ┌─────────┐ ┌─────────┐
+  │  │   App   │ │   App   │ │   App   │
+  │  └─────────┘ └─────────┘ └─────────┘
+  │  ┌─────────┐ ┌─────────┐ ┌─────────┐
+  │  │  Bins/  │ │  Bins/  │ │  Bins/  │
+V │  │  Libs   │ │  Libs   │ │  Libs   │
+M │  └─────────┘ └─────────┘ └─────────┘
+  │  ┌─────────┐ ┌─────────┐ ┌─────────┐
+  │  │  Guest  │ │  Guest  │ │  Guest  │
+  │  │   OS    │ │   OS    │ │   OS    │
+  └─ └─────────┘ └─────────┘ └─────────┘
+     ┌─────────────────────────────────┐
+     │            Hypervisor           │
+     └─────────────────────────────────┘
+     ┌─────────────────────────────────┐
+     │             Host OS             │
+     └─────────────────────────────────┘
+     ┌─────────────────────────────────┐
+     │              Server             │
+     └─────────────────────────────────┘
+
+
+# Docker container
+- Use a shared host OS
+- You must use that OS
+- Less Recources and lightweight
+
+     ┌─────────────────────┐ ┌─────────┐
+     │        Image        │ │  Image  │
+     └────┬───────────┬────┘ └────┬────┘
+  ┌─ ┌────┴────┐ ┌────┴────┐ ┌────┴────┐ ─┐
+C │  │         │ │         │ │         │  │
+O │  │         │ │         │ │         │  │
+N │  │   App   │ │   App   │ │   App   │  │ instances of
+T │  │         │ │         │ │         │  │    images
+A │  │         │ │         │ │         │  │
+I │  └─────────┘ └─────────┘ └─────────┘ ─┘
+N │  ┌─────────┐ ┌─────────┐ ┌─────────┐
+E │  │  Bins/  │ │  Bins/  │ │  Bins/  │
+R │  │  Libs   │ │  Libs   │ │  Libs   │
+  └─ └─────────┘ └─────────┘ └─────────┘
+     ┌─────────────────────────────────┐
+     │            Hypervisor           │
+     └─────────────────────────────────┘
+     ┌─────────────────────────────────┐
+     │             Host OS             │
+     └─────────────────────────────────┘
+     ┌─────────────────────────────────┐
+     │              Server             │
+     └─────────────────────────────────┘
+
+
+
+#-#
+#-# General usage
+#-#
+
+#-# Setup
+
+# Install
+curl -q https://get.docker.com | bash
+
+# Make sure Docker server starts automatically on boot
+sudo systemctl enable docker; sudo systemctl start docker
+
+# Use docker from a nonroot user, add the user to the docker group
+sudo gpasswd -a $USER docker
+
+#-# Misc
+
+# Find out installed Docker version
+docker version
+
+# Check if the Docker daemon is running and Docker server info
+docker info
+
+
+
+#-#
+#-# Image
+#-#
+
+Images are just templates for docker containers.
+https://docs.docker.com/engine/understanding-docker/#how-does-a-docker-image-work
+
+#-# Lifecycle
+
+Command                                     Description
+-------                                     -----------
+docker search <image>                       searches for images in registry.
+docker pull <image>:<version>               downloads image from registry.
+docker push <username>/<image>              pushes the image to the registry.
+docker images                               shows all images.
+docker import - <image> < container.tar     creates an image from a tarball.
+docker export <container> > container.tar   turns container filesystem into tarball archive stream to STDOUT.
+docker build                                creates image from Dockerfile.
+docker commit                               creates image from a container, pausing it temporarily if it is running.
+docker rmi <image>                          removes an image.
+docker rmi <image> -f                       forcefully removes an image.
+docker rmi $(docker images -q)              removes all images.
+docker load < image.tar.gz                  loads an image from a tar archive as STDIN, including images and tags (as of 0.7).
+docker save <image>:<tag>                   saves an image to a tar archive stream to STDOUT with all parent layers, tags & versions (as of 0.7).
+  | gzip > image.tar.gz
+
+#-# Info
+
+Command                                     Description
+-------                                     -----------
+docker history                              shows history of image.
+docker tag                                  tags an image to a name (local or registry).
+
+
+
+#-#
+#-# Container
+#-#
+
+Containers are to Virtual Machines as threads are to processes.
+http://etherealmind.com/basics-docker-containers-hypervisors-coreos/
+
+#-# Lifecycle
+
+Command                                     Description
+-------                                     -----------
+docker create                               creates a container but does not start it.
+docker rename <current_name> <new_name>     allows the container to be renamed.
+docker run                                  creates and starts a container in one operation.
+docker run -d <image>:<tag>                 runs a container in the background (docker run = docker create + docker start).
+docker run -it <image>:<tag> <command>      runs an interactive container.
+docker run --rm <image>:<tag> <command>     runs a container automatically removed on stop.
+docker run --name <name> <image>            runs a named container.
+docker run -d label=<key>=<value> <image>   adds metadata/labels to a container.
+docker run -d -e <VAR>="<value>" <image>    adds environment variable to a container.
+docker run -d -P <image>                    exposes/publishes all exposed ports to random ports on the host.
+docker run -dp <h_port>:<c_port> <image>    exports port <c_port> from a container to port <h_port> on the host.
+docker rm <image>                           deletes a container.
+docker update                               updates a container's resource limits.
+
+
+#-# Starting and stopping
+
+Command                                     Description
+-------                                     -----------
+docker start <container>                    starts a container so it is running.
+docker stop <container>                     stops a running container.
+docker stop -t 25 <container>               SIGKILL after 25s if has not stopped by SIGTERM
+docker restart <container>                  stops and starts a container.
+docker pause <container>                    pauses a running container, "freezing" it in place.
+docker unpause <container>                  will unpause a running container.
+docker wait <container>                     blocks until running container stops.
+docker kill <container>                     sends a SIGKILL to a running container.
+docker attach <container>                   will connect to a running container.
+
+
+#-# Info
+
+Command                                     Description
+-------                                     -----------
+docker ps                                   shows running containers.
+docker ps -a                                shows all containers (running and stopped).
+docker logs -ft <container>                 shows live logs of the running daemon container as well as timestamps. (You can use a custom log driver, but logs is only available for json-file and journald in 1.10).
+docker inspect <container>                  looks at all the info on a container (including IP address).
+docker events <container>                   gets events from container.
+docker ports <container>                    shows public facing ports of container.
+docker top <container>                      shows running processes in container.
+docker stats <container>                    shows containers' resource usage statistics.
+docker diff <container>                     shows changed files in the container's filesystem.
+
+#-# Import / Export
+
+Command                                     Description
+-------                                     -----------
+docker cp <container>:/<dir>/<file> .       copies data from container to host.
+docker cp <file> <container>:/<dir>/<file>  copies data from host to container.
+
+
+#-# Executing commands
+
+Command                                     Description
+-------                                     -----------
+docker exec                                 executes a command in container.
+
+
+
+#-#
+#-# Networking
+#-#
+
+Talking to containers works great with ports but you can create networks too.
+There is also Docker Swarm to create more advanced networks.
+
+#-# Lifecycle
+
+Command                                     Description
+-------                                     -----------
+docker network create <network>             creates a local network.
+docker network rm <network>                 deteles a network.
+
+#-# Info
+
+Command                                     Description
+-------                                     -----------
+docker network ls                           lists available networks.
+docker network inspect <network>            displays network metadata.
+
+#-# Connection
+
+Command                                     Description
+-------                                     -----------
+docker run -d --net <net> <container>       attaches a container to a network on start.
+docker network connect <net> <container>    connects a running container to a network.
+docker network disconnect <net> <container> disconnects container from a network.
+
+
+
+#-#
+#-# Dockerfile
+#-#
+
+#-# Instructions
+
+Command                                     Description
+-------                                     -----------
+FROM <image>[:<tag>] [AS <name>]            sets the Base Image for subsequent instructions.
+MAINTAINER <author>                         set the Author field of the generated images. (deprecated - use LABEL instead)
+RUN <command>                               execute any commands in a new layer on top of the current image and commit the results.
+CMD <command>                               provide defaults for an executing container.
+EXPOSE <port> [<port>...]                   informs Docker that the container listens on the specified network ports at runtime. NOTE: does not actually make ports accessible.
+ENV <key>=<value>                           sets environment variable.
+ADD <src> <dest>                            copies new files, directories or remote file to container. Invalidates caches. (avoid ADD and use COPY instead)
+COPY <src> <dest>                           copies new files or directories to container. Note that this only copies as root, so you have to chown manually regardless of your USER / WORKDIR setting. See https://github.com/moby/moby/issues/30110
+ENTRYPOINT <command>                        configures a container that will run as an executable.
+VOLUME </volume>                            creates a mount point for externally mounted volumes or other containers.
+USER <user>[:<group>]                       sets the user name for following RUN / CMD / ENTRYPOINT commands.
+WORKDIR /path/to/workdir                    sets the working directory.
+ARG <name>[=<default value>]                defines a build-time variable.
+ONBUILD [instruction]                       adds a trigger instruction when the image is used as the base for another build.
+STOPSIGNAL <signal>                         sets the system call signal that will be sent to the container to exit.
+LABEL <key>=<value>                         apply key/value metadata to your images, containers, or daemons.
+
+#-# Examples
+
+# Installing packages
+FROM debian:wheezy
+RUN apt-get update
+RUN apt-get -y install python git
+
+# Adding users
+RUN useradd vrachieru -u 1001 -s /bin/bash
+
+# Defining work directories and environment
+WORKDIR /home/vrachieru/
+ENV HOME /home/vrachieru
+
+# Mounts
+VOLUME ["/home"]
+
+# Opening ports
+EXPOSE 22
+EXPOSE 80
+
+# Start command
+USER vrachieru
+WORKDIR /home/vrachieru/
+ENTRYPOINT bin/my-start-script.sh
