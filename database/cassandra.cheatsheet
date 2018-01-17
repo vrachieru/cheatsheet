@@ -31,12 +31,12 @@ node				A server running an instance of cassandra.
 token				A single token associated with a piece of data. "Token" is also often used to refer to a range of tokens.
 vnode				A virtual node. Virtual nodes are used to distribute token values on a single physical node.
 snitch				Snitches are used by cassandra internally to learn about the nodes. See SimpleSnitch, GossipingPropertyFileSnitch, PropetyFileSnitch, etc.
-dc					A data center is a grouping of nodes. Each data center has its own set of tokens.
+dc				A data center is a grouping of nodes. Each data center has its own set of tokens.
 rack				Each node in a data center is part of a rack. Racks do not require an even distribution of nodes. Data center replication will be evenly distributed among racks. Each rack will evenly distribute the replication among the nodes on the rack.
 keyspace			Data is organized at the highest level into keyspaces. The oracle or mysql analog is tablespace. Replication is specified at the keyspace level.
 table				Pretty close to mysql definition - columns are defined, and rows of data are stored in the table.
 partition			All data is associated with a partition key. A table contains partitions.
-row					Also close to mysql definition. Rows represent data within paritions.
+row				Also close to mysql definition. Rows represent data within paritions.
 
 
 
@@ -49,17 +49,17 @@ All data stored in Cassandra is associated with a token value.
 Each data center has a set of token values, and each node in the data center is assigned to manage a portion of the token values. 
 Virtual nodes can exist within each node and distribute the load of token values somewhat randomly, making it so that each vnode is replicated on a different node.
 
-Property			Relational database 														Cassandra
---------			-------------------															---------
+Property			Relational database 								Cassandra
+--------			-------------------								---------
 Atomicity			Enforced at every scope, at the cost of performance and scalability.		Success or failure on a row-by-row basis.
-Sharding			Often forced when scaling, partitioned by key or function					Native share-nothing architecture, inherently partitioned by a configurable strategy.
-Consistency 		Favors consistency over availability tunable via isolation levels.			No consistency in the ACID sense. Can be tuned to provide consistency in the CAP sense--data is consistent across all the nodes in a distributed database cluster ,guaranteeing read-after-write or eventual readability.
+Sharding			Often forced when scaling, partitioned by key or function			Native share-nothing architecture, inherently partitioned by a configurable strategy.
+Consistency 			Favors consistency over availability tunable via isolation levels.		No consistency in the ACID sense. Can be tuned to provide consistency in the CAP sense--data is consistent across all the nodes in a distributed database cluster ,guaranteeing read-after-write or eventual readability.
 Durability			Typically, data is written to a single master node, sometimes configured	Writes are durable to a replica node, being recorded in memory and the commit log before acknowledged. In the event of a crash, the commit log replays on restart to recover any lost writes before data is flushed to disk.
-					with synchronous replication at the cost of performance and cumbersome 
-					data restoration.
-Multi-Datacenter	Typically only limited long-distance replication to read-only slaves		Native capabilities for data replication over lower bandwidth, higher latency, less reliable connections.
-Replication 		receiving asynchronous updates.
-Security			Fine-grained access control to objects.										Coarse-grained and primitive.
+				with synchronous replication at the cost of performance and cumbersome 
+				data restoration.
+Multi-Datacenter		Typically only limited long-distance replication to read-only slaves		Native capabilities for data replication over lower bandwidth, higher latency, less reliable connections.
+Replication 			receiving asynchronous updates.
+Security			Fine-grained access control to objects.						Coarse-grained and primitive.
 
 
 #-# Keyspace
@@ -117,18 +117,18 @@ Nodes that get written to in a statement are called 'replica nodes'.
 # Single data center consistency options
 Option			Description
 ------			-----------
-ONE				Write/read succeeds after writing/reading data to/from a single node.
-TWO				Write/read succeeds after writing/reading data to/from two nodes.
+ONE			Write/read succeeds after writing/reading data to/from a single node.
+TWO			Write/read succeeds after writing/reading data to/from two nodes.
 THREE			Write/read succeeds after writing/reading data to/from three nodes.
 QUORUM			Write/read succeeds after writing/reading data to/from a majority of the available nodes.
-ALL				Write/read succeeds after writing/reading data to/from all of the available nodes.
-ANY				Write/read succeeds after writing/reading data to/from any of the available nodes (including just making it to the coordinator node).
+ALL			Write/read succeeds after writing/reading data to/from all of the available nodes.
+ANY			Write/read succeeds after writing/reading data to/from any of the available nodes (including just making it to the coordinator node).
 
 # Multiple data centers consistency options
 Option			Description
 ------			-----------
 EACH_QUORUM		A quorum succeeds in each data center before returning success
-LOCAL_QUORUM	A quorum succeeds in the data center that contains the coordinator node.
+LOCAL_QUORUM		A quorum succeeds in the data center that contains the coordinator node.
 LOCAL_ONE		Same as ONE, but only looks in the data center of the coordinator node.
 
 If a node is down when a write occurs so that the node misses data, the data will be repaired during a read.
@@ -251,33 +251,33 @@ Command								Description
 -------								-----------
 cqlsh								Launch the shell and connect to the default node. Default is localhost:9160; this can be changed by setting $CQLSH_HOST and/or $CQLSH_PORT
 cqlsh -h							Display the help docs.
-cqlsh <address>						Connect to a remote node. The address can be an ip address or a url.
-cqlsh <address> -u <user>			Connect to a remote with the specified user. This will open up an interactive prompt if a password is required.
-cqlsh <address> -u <user> -p <pass>	Authenticated remote login. Note that password will be visible as plain text on console if -p is used.
-cqlsh -k <keyspace>					Authenticate to the provided keyspace.
-cqlsh -f <file-path.cql>			Execute commands from the file and then exit.
-cqlsh -e "<cql-command>"			Execute a CQL command and then exit. For example, cqlsh -e "SELECT id FROM sample_keyspace.my_table"
-cqlsh --cqlversion=<version>		Use the specified version of CQL. For example, cqlsh --cqlversion=3.0.3
+cqlsh <address>							Connect to a remote node. The address can be an ip address or a url.
+cqlsh <address> -u <user>					Connect to a remote with the specified user. This will open up an interactive prompt if a password is required.
+cqlsh <address> -u <user> -p <pass>				Authenticated remote login. Note that password will be visible as plain text on console if -p is used.
+cqlsh -k <keyspace>						Authenticate to the provided keyspace.
+cqlsh -f <file-path.cql>					Execute commands from the file and then exit.
+cqlsh -e "<cql-command>"					Execute a CQL command and then exit. For example, cqlsh -e "SELECT id FROM sample_keyspace.my_table"
+cqlsh --cqlversion=<version>					Use the specified version of CQL. For example, cqlsh --cqlversion=3.0.3
 
 Once inside of a cqlsh prompt, these commands are available:
 
 Command 							Description
 -------								-----------
 help								Show the help docs.
-use <keyspace>						Use the specified keyspace. Allows accessing tables without prefixing with keyspace..
-tracing <on/off>					Turn tracing on or off
+use <keyspace>							Use the specified keyspace. Allows accessing tables without prefixing with keyspace..
+tracing <on/off>						Turn tracing on or off
 desc								Describe a keyspace or table.
-source <filepath>					Execute a file containing CQL statements.
-expand <on/off>						If expand is on, each row printed to the console will be on its own line. Much easier to read!
+source <filepath>						Execute a file containing CQL statements.
+expand <on/off>							If expand is on, each row printed to the console will be on its own line. Much easier to read!
 nodetool							Useful tool for interacting with nodes. The nodetool command can be run from cqlsh on any node in the cluster and will yield the same results.
-nodetool help						Display help docs.
-nodetool status						Shows the status of the cassandra nodes in the cluster
-nodetool status <keyspace>			Shows the status of the cassandra nodes that own the specified keyspace.
-nodetool ring						Shows the token ranges for the node. Each row represents a vnode
-nodetool describering <keyspace>	Shows the token ranges where all data would go for the specified keyspace.
-nodetool repair						Repair inconsistencies in data across nodes.
-nodetool pausehandoff				Pauses automatic hand-offs, or data repair. Can be useful when trying to trace hand-offs.
-nodetool cfstats <table-name>		Displays detailed stats on the table, including read and write activity. Useful for ensuring that a table really is not in use before dropping it.
+nodetool help							Display help docs.
+nodetool status							Shows the status of the cassandra nodes in the cluster
+nodetool status <keyspace>					Shows the status of the cassandra nodes that own the specified keyspace.
+nodetool ring							Shows the token ranges for the node. Each row represents a vnode
+nodetool describering <keyspace>				Shows the token ranges where all data would go for the specified keyspace.
+nodetool repair							Repair inconsistencies in data across nodes.
+nodetool pausehandoff						Pauses automatic hand-offs, or data repair. Can be useful when trying to trace hand-offs.
+nodetool cfstats <table-name>					Displays detailed stats on the table, including read and write activity. Useful for ensuring that a table really is not in use before dropping it.
 
 
 
@@ -331,19 +331,19 @@ Note - both INSERT and UPDATE are functionally upsert statements (insert or upda
 Use the IN () selector with caution. An IN will cause a single coordinator node to search through multiple partitions.
 It can become more efficient to perform multiple select queries rather than using a large IN clause to do a single select.
 
-Command				Description										Examples
--------				-----------										--------
+Command				Description							Examples
+-------				-----------							--------
 CREATE				Use to create a keyspace or table.				CREATE KEYSPACE sample WITH REPLICATION = {'class':'SimpleStrategy','replication_factor':3};
-																	CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))
+												CREATE TABLE my_table (id text, size int, PRIMARY KEY (id))
 INSERT				Use to update or insert table data.				INSERT INTO my_table (id) VALUES ('guid');
 UPDATE				Update or insert data in a table.				UPDATE my_table SET author = 'paul-ofallon' WHERE id = 'cassandra-developers';
-DELETE				Delete data from a table.						DELETE FROM my_table WHERE id = 'asdf'
+DELETE				Delete data from a table.					DELETE FROM my_table WHERE id = 'asdf'
 DROP				Drop / delete a table or keyspace.				DROP KEYSPACE sample;
-																	DROP TABLE my_table;
-ALTER				Alter a table or keyspace.						ALTER KEYSPACE sample WITH DURABLE_WRITES = true;
+												DROP TABLE my_table;
+ALTER				Alter a table or keyspace.					ALTER KEYSPACE sample WITH DURABLE_WRITES = true;
 TRUNCATE			Remove all data from a table.					TRUNCATE my_table;
-WITH				Used to specify properties.						CREATE TABLE my_table (id varchar PRIMARY KEY) WITH comment='A table';
-WRITETIME			Timestamp for when something was written.		SELECT id, WRITETIME(author) FROM my_table;
+WITH				Used to specify properties.					CREATE TABLE my_table (id varchar PRIMARY KEY) WITH comment='A table';
+WRITETIME			Timestamp for when something was written.			SELECT id, WRITETIME(author) FROM my_table;
 
 
 #-# Example
