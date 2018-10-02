@@ -1,6 +1,11 @@
-# Cheatsheet
-
-[![Package Control Downloads](https://img.shields.io/packagecontrol/dt/Cheatsheet.svg?style=flat)](https://packagecontrol.io/packages/Cheatsheet)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/5860071/46333591-8c9f2980-c629-11e8-9592-b8c4b4971adb.jpg" width="200px" />
+  <br/>
+  <a href="https://packagecontrol.io/packages/Cheatsheet">
+    <img src="https://img.shields.io/packagecontrol/dt/Cheatsheet.svg?style=flat" />
+  </a>
+  <img src="https://user-images.githubusercontent.com/5860071/46334000-23b8b100-c62b-11e8-8ae6-6155cd436a48.png" />
+</p>
 
 This is a collection of various brain dumps gathered throughout my journey of poking a bunch of things with a stick. Its main purpouse is to act as a quick reference for those pesky little details that just won't stay in your head but it can also be a starting point in learning something awesome and new.
 
